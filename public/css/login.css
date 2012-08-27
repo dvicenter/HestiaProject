@@ -1,0 +1,109 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+@font-face {
+	font-family: "Open-Sans";
+	font-style: normal;
+	font-weight: normal;
+	src: url("fonts/AnnieUseYourTelescope.ttf");
+}
+html{
+	height: 100%;
+}
+header{
+	background: white;
+	text-align: center;	
+	border-bottom-style: dotted;
+	border-color:#474E4B;
+	padding:0.5%;
+}
+header img{
+	display:inline-block;
+	vertical-align: text-bottom;
+}
+.header_text{
+	display:block;
+	vertical-align: middle;
+}
+header h1{
+	color:#FF9900;
+	margin:0;
+	display: inline-block;
+	font-family: 'Open-Sans';
+	
+}
+header p{
+	color:#302727;
+	display:block;
+	text-shadow: 0px 2px 3px #969696;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+body{
+	font-family: 'Calibri';	
+	background-color: #1B1B1B;
+	background-size: 20px 20px
+}
+.cuerpo_login{	
+	display:block;
+	padding:5%;
+	width:auto;
+}
+.cuerpo_login input{
+	border-radius:5px;
+	display:block;
+	padding:1%;
+	width:80%;
+	margin-left:5%;
+}
+.cuerpo_login label{
+	color:#494949;
+	font-size:1.2em;
+	display:block;
+	font-weight:bold;
+	margin-left: 5%;
+	text-align: left;
+}
+.botones_login{
+	text-align:center;
+	display:block;
+	margin-bottom: 5%;
+}
+.panel_principal{
+	display:block;		
+	width:auto;
+	text-align:center;
+}
+.login{	
+	border-radius:5px;	
+	margin-top:5%;
+	display: inline-block;	
+	width:25%;	
+	background-color: whitesmoke;	
+	box-shadow: 0 0 5px 5px #474E4B;	
+}
+
+footer{
+	display:block;
+	background:white;
+	text-align:center;
+	height: 100px;
+	border-top-style: dotted;
+	border-color:#474E4B;
+}
+
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   Theses examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+

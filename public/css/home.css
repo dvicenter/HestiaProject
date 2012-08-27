@@ -1,0 +1,201 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+@font-face {
+	font-family: "Open-Sans";
+	font-style: normal;
+	font-weight: normal;
+	src: url("fonts/AnnieUseYourTelescope.ttf");
+}
+
+html{
+	height: 100%;
+}
+header{
+	background: white;
+	text-align: center;	
+	border-bottom-style: dotted;
+	border-color:#474E4B;
+	padding:0.5%;
+}
+header img{
+	display:inline-block;
+	vertical-align: text-bottom;
+}
+.header_text{
+	display:block;
+	vertical-align: middle;
+}
+header h1{
+	color:#FF9900;
+	margin:0;
+	display: inline-block;
+	font-family: 'Open-Sans';
+	
+}
+header p{
+	color:#302727;
+	display:block;
+	text-shadow: 0px 2px 3px #969696;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+body{
+	font-family: 'Calibri';	
+	background-color: #1B1B1B;
+	background-size: 20px 20px
+}
+nav{
+	border-radius:5px;
+	width:auto;
+	margin-top:3%;
+	margin-left:1%;
+	background-color: whitesmoke;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	border: 1px solid orange;	
+
+}
+.active_sub_menu a:hover{
+	text-decoration:none;
+	color:white;	
+}
+.active_sub_menu a{
+	color:whitesmoke;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+.nav-header:hover{
+	filter: gray(0%);
+	-webkit-filter:grayscale(0%);
+	color:rgb(190, 71, 48);	
+}
+.nav-header{	
+	filter: gray(100%);
+	-webkit-filter:grayscale(100%);
+}
+.nav-header img{	
+	margin-right: 5px;
+}
+.nav-header-active{
+	color:#BE4730;
+	filter: gray(0%);
+	-webkit-filter: grayscale(0%);
+}
+.active_sub_menu{
+  margin:0px;
+  padding: 8px 14px;
+  border-radius: 5px;
+  background-color: #BE4730;
+  
+}
+.item_menu_nav {
+	padding: 8px 14px;
+}
+.item_menu_nav:hover {
+background-color: #C4C4C4;
+border-radius: 5px;
+}
+.item_menu_nav a:hover {
+	text-decoration: none;
+}
+.nav-list .icon-chevron-right {
+float: right;
+margin-top: 2px;
+margin-right: -6px;
+opacity: .25;
+}
+.nav-list a:hover .icon-chevron-right {
+opacity: .5;
+}
+.active a:hover{
+	border-radius: 0px;
+}
+.datos_usuarios{
+	width:auto;
+	margin-left:1%;
+	border-radius: 5px;
+	background-color: whitesmoke;
+	border: 1px solid orange;
+	padding: 0.5% 0;
+}
+.edit_dato_usuario{
+	display: inline-block;
+	vertical-align: bottom;
+	
+}
+.edit_dato_usuario img{
+	filter: gray;
+	-webkit-filter: grayscale(30%);	
+}
+.edit_dato_usuario img:hover{
+	filter: none;
+	-webkit-filter: grayscale(0%);
+	margin-top:5px;
+}
+.imagen_dato_usuario img{
+	width:50px;
+	height: 50px;
+	margin-left: 2%;
+	display: inline-block;
+	transition:all linear 1s;
+	-webkit-transition:all linear 1s;
+	border: 1.5px solid #777;
+	vertical-align: middle;
+	opacity: 0.8;
+}
+.imagen_dato_usuario img:hover{
+	opacity: 1;
+}
+.texto_dato_usuario{
+	display: inline-block;
+}
+.texto_dato_usuario b{
+	color:#BE4730;
+}
+.imagen_dato_usuario{
+	display:inline-block;
+}
+
+.texto_dato_usuario p{
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 0 0px;
+
+}
+.divisor{
+	height: 55px;
+  margin: 0 1px;
+border-right: 1px solid orange;
+border-left: 1px solid #F3EAD9;
+  display: inline-block;
+  vertical-align: middle;
+}
+.seccion_right{
+	background-color: white;
+	display:inline-block;
+	width:74%;
+	border:1px solid orange;
+	height: 480px;
+	margin-top:1%;
+	margin-right:0.5%;
+	border-radius: 5px;
+	
+}
+.seccion_left{
+	display:inline-block;
+	width:22%;
+	vertical-align: top;
+	margin:1%;	
+}
+
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   Theses examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
