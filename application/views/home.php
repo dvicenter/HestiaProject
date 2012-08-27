@@ -40,8 +40,8 @@
 						<i>0333081003</i><br>
 						<b>Usuario:</b>
 						<i>Elizabeth Manrique</i><br>
-						<b>Estado:</b>
-						<i>Habilitado</i>
+						<b>Sucursal:</b>
+						<i>Central</i>
 					</p>
 					</div>
 					<div class="edit_dato_usuario">
