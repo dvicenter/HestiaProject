@@ -7,7 +7,12 @@
 	font-weight: normal;
 	src: url("fonts/AnnieUseYourTelescope.ttf");
 }
-
+@font-face {
+	font-family: "Open-Sans2";
+	font-style: normal;
+	font-weight: normal;
+	src: url("fonts/Pompiere-Regular.ttf");
+}
 html{
 	height: 100%;
 }
@@ -194,7 +199,6 @@ border-left: 1px solid #F3EAD9;
 
 .marcado_asistencia_primero{
 	display: block;		
-	height: 8%;
 }
 .asistencia_fecha_sistema{
 	width:auto;
@@ -209,16 +213,11 @@ border-left: 1px solid #F3EAD9;
 }
 
 .asistencia_consulta{
-display: inline-block;
+display: block;
 width: 30%;
 }
 .asistencia_consulta form{
 	margin:0;
-}
-.asistencia_consulta form label,.asistencia_consulta form input{
-	margin:0;
-	vertical-align: middle;
-	width:90%;
 }
 
 .asistencia_consulta label{
@@ -228,8 +227,7 @@ width: 30%;
 	display:inline-block;
 }
 .asistencia_hora_sistema{
-	display: inline-block;	
-	width:69%;
+	margin:45px 0 30px 0;
 }
 .asistencia_hora_sistema p{
 	margin:0;
@@ -239,42 +237,44 @@ width: 30%;
 }
 .marcado_asistencia_segundo{
 	display: block;	
-	height: 15%;
 }
 .marcado_asistencia_tercero{
 	display: block;
-	height: 74%;	
 	margin-top: 3%;
+}
+.marcado_asistencia_cuarto{
+	display: block;
 }
 .asistencia{
 	width:90%;
 	margin :2% auto;
-	height: 88%;
 	
 }
 .asistencia_foto{	
   width: 30%;
-  height: 100%;    
   display: inline-block;
+  vertical-align: top;
 }
 .asistencia_foto p{	
   margin:0;
 }
 .asistencia_datos{	
-  border-radius: 5px;
-  border: 2px solid #fff;
-  display: inline-block;
-  vertical-align: top;  
-  height: 94.5%;
-  width: 69%;  
-  -webkit-box-shadow: 0px 0px 2px 3px #777;
-  -moz-box-shadow: 0px 0px 6px 3px #777;
-  box-shadow: 0px 0px 6px 3px #777;
-  background-color: white;
+border-radius: 5px;
+border: 2px solid #968B8B;
+display: inline-block;
+vertical-align: bottom;
+width: 69%;
+-webkit-box-shadow: 0px 0px 2px 3px #777;
+-moz-box-shadow: 0px 0px 6px 3px #777;
+box-shadow: 0px 0px 6px 3px #777;
+background-color: white;
+border-style: dotted;
+height: 280px;
 }
  .polaroid {
 position: relative;
 vertical-align: middle;
+display:block;
 }
 .polaroid img {
   border: 10px solid #fff;
@@ -282,13 +282,13 @@ vertical-align: middle;
   -webkit-box-shadow: 0px 0px 6px 3px #777;
   -moz-box-shadow: 0px 0px 6px 3px #777;
   box-shadow: 0px 0px 6px 3px #777;
-  width: 90%;
-  height: 79%;
+  width: 84%;
+  height: 230px;
 }
  
 .polaroid p {
  position: absolute;
-font: 400 30px/1 'Calibri', cursive;
+font: 400 30px/1 'Calibri', normal;
 display: block;
 text-align: center;
 width: 100%;
@@ -297,27 +297,58 @@ color: black;
   
 }
 .asistencia_datos div{
-	margin:8% 2%;
+	margin:2% 2%;	
+ 	text-align: center;
 }
 .asistencia_ape_nom{
 	display: block;
 }
+
 .asistencia_car_cic{
 	display:block;
 }
 .asistencia_mensaje{
 	display:block;
 }
+.asistencia_mensaje{
+	text-align:center;
+	
+}
+.asistencia_mensaje img{
+	margin-bottom:2%;
+}
 .asistencia_ape_nom p{
 	color:#003977;
+	text-align: center;
 }
 .asistencia_car_cic p{
-	color: #BE4730;
+	color: #1D1A19;
+	text-align: center;
 }
-.asistencia_ape_nom p,.asistencia_car_cic p,.asistencia_mensaje{
+.asistencia_tipo p{
+	color: #BE4730;
+	text-align: center;	
+	text-shadow: 1px 1px 1px #A5A2A2;
+	font-weight: bold;
+}
+
+.asistencia_mensaje p{
+	color: #51A351;
+	text-align: center;
+	font-size: 42px;
+	text-shadow: 1px 1px 1px #A5A2A2;
+	font-weight: bold;
+}
+.asistencia_ape_nom p,.asistencia_car_cic p,.asistencia_mensaje p, .asistencia_tipo p{
 	font-size: 30px;
 	vertical-align: middle;
 }
+#codigo_consultar{
+	width:61%;
+}
+ #boton_consultar{
+ 	width:25%;
+ }
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    Theses examples override the primary ('mobile first') styles.
