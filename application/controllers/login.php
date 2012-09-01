@@ -6,9 +6,5 @@ class Login extends CI_Controller {
 	{
 		$this->load->view('login');
 	}
-	public function verificarCredenciales()
-	{
-		$this->load->view('home.php');
-	}
 }
 ?>

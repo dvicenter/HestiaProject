@@ -64,6 +64,9 @@ nav{
 	color:whitesmoke;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
 }
+.active_sub_menu:hover{
+	background-color: #BE4730 !important;
+}
 .nav-header:hover{
 	filter: gray(0%);
 	-webkit-filter:grayscale(0%);
@@ -171,7 +174,8 @@ border-left: 1px solid #F3EAD9;
   vertical-align: middle;
 }
 .seccion_right{
-	background-color: white;
+	
+	background-color: whitesmoke;
 	display:inline-block;
 	width:74%;
 	border:1px solid orange;
@@ -188,7 +192,132 @@ border-left: 1px solid #F3EAD9;
 	margin:1%;	
 }
 
+.marcado_asistencia_primero{
+	display: block;		
+	height: 8%;
+}
+.asistencia_fecha_sistema{
+	width:auto;
+	height: 100%;
+}
+.asistencia_fecha_sistema p{
+	text-align: right;
+	font-size: 30px;
+	vertical-align: middle;
+	margin:0;
+	height: 100%;
+}
 
+.asistencia_consulta{
+display: inline-block;
+width: 30%;
+}
+.asistencia_consulta form{
+	margin:0;
+}
+.asistencia_consulta form label,.asistencia_consulta form input{
+	margin:0;
+	vertical-align: middle;
+	width:90%;
+}
+
+.asistencia_consulta label{
+	display:inline-block;
+}
+.asistencia_consulta input{
+	display:inline-block;
+}
+.asistencia_hora_sistema{
+	display: inline-block;	
+	width:69%;
+}
+.asistencia_hora_sistema p{
+	margin:0;
+	text-align: right;
+	font-size: 50px;
+	color: #0B1E5C;
+}
+.marcado_asistencia_segundo{
+	display: block;	
+	height: 15%;
+}
+.marcado_asistencia_tercero{
+	display: block;
+	height: 74%;	
+	margin-top: 3%;
+}
+.asistencia{
+	width:90%;
+	margin :2% auto;
+	height: 88%;
+	
+}
+.asistencia_foto{	
+  width: 30%;
+  height: 100%;    
+  display: inline-block;
+}
+.asistencia_foto p{	
+  margin:0;
+}
+.asistencia_datos{	
+  border-radius: 5px;
+  border: 2px solid #fff;
+  display: inline-block;
+  vertical-align: top;  
+  height: 94.5%;
+  width: 69%;  
+  -webkit-box-shadow: 0px 0px 2px 3px #777;
+  -moz-box-shadow: 0px 0px 6px 3px #777;
+  box-shadow: 0px 0px 6px 3px #777;
+  background-color: white;
+}
+ .polaroid {
+position: relative;
+vertical-align: middle;
+}
+.polaroid img {
+  border: 10px solid #fff;
+  border-bottom: 45px solid #fff;
+  -webkit-box-shadow: 0px 0px 6px 3px #777;
+  -moz-box-shadow: 0px 0px 6px 3px #777;
+  box-shadow: 0px 0px 6px 3px #777;
+  width: 90%;
+  height: 79%;
+}
+ 
+.polaroid p {
+ position: absolute;
+font: 400 30px/1 'Calibri', cursive;
+display: block;
+text-align: center;
+width: 100%;
+bottom: 0px;
+color: black;
+  
+}
+.asistencia_datos div{
+	margin:8% 2%;
+}
+.asistencia_ape_nom{
+	display: block;
+}
+.asistencia_car_cic{
+	display:block;
+}
+.asistencia_mensaje{
+	display:block;
+}
+.asistencia_ape_nom p{
+	color:#003977;
+}
+.asistencia_car_cic p{
+	color: #BE4730;
+}
+.asistencia_ape_nom p,.asistencia_car_cic p,.asistencia_mensaje{
+	font-size: 30px;
+	vertical-align: middle;
+}
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    Theses examples override the primary ('mobile first') styles.

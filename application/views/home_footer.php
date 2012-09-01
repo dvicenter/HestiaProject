@@ -53,7 +53,7 @@
 						  <div id="p_gestion_menu"data-toggle="collapse" data-target="#gestion_menu"><li class="nav-header nav-header-active"><img src="<?php echo base_url("public/img/menu_16x16.png")?>">Gestión de Menu</li></div>
 						  <div id="gestion_menu" class="collapse out" data-parent="#p_gestion_menu">
 							  <li class="divider"></li>
-							  <li class="active_sub_menu"><a href="#">Lorem Ipsum</a></li>						  
+							  <li class="item_menu_nav active_sub_menu"><a href="#">Lorem Ipsum</a></li>						  
 							  <li class="item_menu_nav" ><a href="#"><i class="icon-chevron-right"></i>Lorem Ipsum</a></li>
 							  <li class="item_menu_nav" ><a href="#"><i class="icon-chevron-right"></i>Lorem Ipsum</a></li>
 							  <li class="item_menu_nav" ><a href="#"><i class="icon-chevron-right"></i>Lorem Ipsum</a></li>
@@ -61,7 +61,7 @@
 						  <div id="p_gestion_asistencia" data-toggle="collapse" data-target="#gestion_asistencia"><li class="nav-header"><img src="<?php echo base_url("public/img/asistencia_16x16.png")?>">Gestión de Asistencia</li></div>
 						  <div id="gestion_asistencia" class="collapse out" data-parent="#p_gestion_asistencia">
 							  <li class="divider"></li>
-							  <li class="item_menu_nav" ><a href="#"><i class="icon-chevron-right"></i>Lorem Ipsum</a></li>						  
+							  <li class="item_menu_nav" ><a href="<?php echo base_url("index.php/gestionAsistencia/marcadoAsistencia")?>"><i class="icon-chevron-right"></i>Marcado de Asistencia</a></li>						  
 							  <li class="item_menu_nav" ><a href="#"><i class="icon-chevron-right"></i>Lorem Ipsum</a></li>
 							  <li class="item_menu_nav" ><a href="#"><i class="icon-chevron-right"></i>Lorem Ipsum</a></li>
 							  <li class="item_menu_nav" ><a href="#"><i class="icon-chevron-right"></i>Lorem Ipsum</a></li>
@@ -78,12 +78,9 @@
 				</nav>
 			</div>
 			<div class="seccion_right">
-				<div class="mensaje_datos">
-					
-				</div>
-				<div class="seccion_datos">
-					
-				</div>	
+					<?php
+					echo isset($page)?$page:"";
+					?>
 			</div>
 		</div>        
         <script src="<?php echo base_url("public/js/vendor/jquery-1.8.0.min.js")?>"></script>

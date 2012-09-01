@@ -12,46 +12,35 @@
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="stylesheet" href="<?php echo base_url("public/css/normalize.css")?>">
-        <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/bootstrap/css/bootstrap.min.css")?>">
-        <link rel="stylesheet" href="<?php echo base_url("public/css/login.css")?>">
+        <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/bootstrap/css/bootstrap.css")?>">
+        <link rel="stylesheet" href="<?php echo base_url("public/css/home.css")?>">
         <script src="<?php echo base_url("public/js/vendor/modernizr-2.6.1.min.js")?>"></script>
     </head>
     <body>
+    	
         <!--[if lt IE 7]>
         <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
         
-        <header>
-        	
-        	<div class="header_text">
-        		<img src="<?php echo base_url("public/img/logo.png")?>"/>        	
-        		<h1>Hestia</h1>
-        	</div>
-        	<p>Sistema de Gestión de Servicio Alimentario</p>
-               	
-        </header>
-		<div class="panel_principal">
-			<div class="login">
-				<form action="<?php echo base_url("index.php/home")?>" method="POST">
-				<div class="cuerpo_login">
-					
-						<label>Usuario</label>
-						<input autofocus required min="0" placeholder="72324881" type="number" name="txt_usuario"/>
-						<label>Contraseña</label>
-						<input autocomplete="OFF" required type="password" name="txt_password"/>				
-				</div>
-				<div class="botones_login">
-					<button class="btn btn-warning btn-large" type="submit"><i class="icon-white icon-lock"></i>Entrar</button>
-				 	<input class="btn btn-large btn-inverse " type="button" name="boton_recuperar_pass_login" value="Olvide Contraseña"/>
-				</div>
-				</form>
+        <?php echo $header;?>
+        
+		<div class="seccion_principal">
+			<div class="seccion_left">
+				 <?php echo $nav;?>
 			</div>
-		</div>
+			<div class="seccion_right">
+				  <?php echo $content; ?>					
+			</div>
+		</div>        
+		
         <script src="<?php echo base_url("public/js/vendor/jquery-1.8.0.min.js")?>"></script>
-        <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootstrap.min.js")?>"></script>        
+        <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootstrap.min.js")?>"></script>
+        <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootstrap-tooltip.js")?>"></script>
+        <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootstrap-transition.js")?>"></script>  
+        <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootstrap-collapse.js")?>"></script>          
         <script>window.jQuery || document.write('<script src="<?php echo base_url("public/js/vendor/jquery-1.8.0.min.js")?>"><\/script>')</script>
         <script src="<?php echo base_url("public/js/plugins.js")?>"></script>
-        <script src="<?php echo base_url("public/js/login.js")?>"></script>
+        <script src="<?php echo base_url("public/js/home.js")?>"></script>
 
     </body>
 </html>
