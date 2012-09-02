@@ -291,13 +291,13 @@ display:block;
 font: 400 30px/1 'Calibri', normal;
 display: block;
 text-align: center;
-width: 100%;
+width: 90%;
 bottom: 0px;
 color: black;
   
 }
 .asistencia_datos div{
-	margin:2% 2%;	
+	margin:3.5% 2%;	
  	text-align: center;
 }
 .asistencia_ape_nom{
@@ -339,16 +339,23 @@ color: black;
 	text-shadow: 1px 1px 1px #A5A2A2;
 	font-weight: bold;
 }
-.asistencia_ape_nom p,.asistencia_car_cic p,.asistencia_mensaje p, .asistencia_tipo p{
+
+.asistencia_ape_nom p,
+.asistencia_car_cic p,
+.asistencia_mensaje p,
+.asistencia_tipo p
+{
 	font-size: 30px;
 	vertical-align: middle;
 }
+
 #codigo_consultar{
-	width:61%;
+	width:67%;
 }
  #boton_consultar{
- 	width:25%;
+ 	width:20%;
  }
+ 
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    Theses examples override the primary ('mobile first') styles.

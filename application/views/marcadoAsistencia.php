@@ -13,8 +13,8 @@
 			<div class="asistencia_consulta">
 				<form> 
 					<div class="input-append">
-	  				<input class="span2" id="codigo_consultar" size="16" type="text">
-	  				<button class="btn" id="boton_consultar"type="button">Buscar</button>
+	  				<input class="span2" id="codigo_consultar" size="16" type="number">
+	  				<button class="btn " id="boton_consultar"type="button"><i class="icon-search icon-black"></i></button>
 					</div>
 				</form>
 			</div>	
