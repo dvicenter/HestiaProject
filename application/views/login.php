@@ -36,7 +36,7 @@
 				<div class="cuerpo_login">
 					
 						<label>Usuario</label>
-						<input autofocus required min="0" placeholder="72324881" type="number" name="txt_usuario"/>
+						<input autocomplete="OFF" autofocus required min="0" placeholder="72324881" type="number" name="txt_usuario"/>
 						<label>Contraseña</label>
 						<input autocomplete="OFF" required type="password" name="txt_password"/>				
 				</div>

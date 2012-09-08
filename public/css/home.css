@@ -126,19 +126,16 @@ opacity: .5;
 	border: 1px solid orange;
 	padding: 0.5% 0;
 }
-.edit_dato_usuario{
-	display: inline-block;
-	vertical-align: bottom;
-	
-}
-.edit_dato_usuario img{
+.link_dato_usuario {
 	filter: gray;
 	-webkit-filter: grayscale(30%);	
 }
-.edit_dato_usuario img:hover{
+.link_dato_usuario:hover{
 	filter: none;
 	-webkit-filter: grayscale(0%);
-	margin-top:5px;
+}
+.imagen_dato_usuario{
+	display: inline-block;
 }
 .imagen_dato_usuario img{
 	width:50px;
@@ -159,6 +156,7 @@ opacity: .5;
 }
 .texto_dato_usuario b{
 	color:#BE4730;
+	
 }
 .imagen_dato_usuario{
 	display:inline-block;
@@ -314,9 +312,6 @@ color: black;
 	text-align:center;
 	
 }
-.asistencia_mensaje img{
-	margin-bottom:2%;
-}
 .asistencia_ape_nom p{
 	color:#003977;
 	text-align: center;
@@ -326,7 +321,7 @@ color: black;
 	text-align: center;
 }
 .asistencia_tipo p{
-	color: #BE4730;
+	color: #C26115;
 	text-align: center;	
 	text-shadow: 1px 1px 1px #A5A2A2;
 	font-weight: bold;
@@ -339,7 +334,15 @@ color: black;
 	text-shadow: 1px 1px 1px #A5A2A2;
 	font-weight: bold;
 }
-
+.asistencia_mensaje div{
+	text-align: left;
+}
+.asistencia_mensaje img{
+	margin-bottom: 10px;
+}
+.asistencia_mensaje div p{
+	display: inline-block;
+}
 .asistencia_ape_nom p,
 .asistencia_car_cic p,
 .asistencia_mensaje p,
@@ -348,7 +351,9 @@ color: black;
 	font-size: 30px;
 	vertical-align: middle;
 }
-
+.asistencia_mensaje p{
+	font-size: 35px;
+}
 #codigo_consultar{
 	width:67%;
 }

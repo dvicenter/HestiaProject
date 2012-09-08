@@ -6,5 +6,10 @@ class Login extends CI_Controller {
 	{
 		$this->load->view('login');
 	}
+	public function cerrarSesion()
+	{
+		$this->session->sess_destroy();
+	   	redirect('login', 'refresh');	
+	}
 }
 ?>
