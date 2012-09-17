@@ -32,7 +32,7 @@
         </header>
 		<div class="panel_principal">
 			<div class="login">
-				<form action="<?php echo base_url("index.php/home")?>" method="POST">
+				<form action="<?php echo base_url("index.php/login/verificarCredenciales")?>" method="POST">
 				<div class="cuerpo_login">
 					
 						<label>Usuario</label>

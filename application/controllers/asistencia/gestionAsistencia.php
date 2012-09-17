@@ -1,6 +1,11 @@
 <?php
 class GestionAsistencia extends CI_Controller {
 
+	public function __construct()
+    {
+    	parent::__construct();
+		$this->control_session->verificarSesionConRedireccionamientoLogin();       
+    }
 	public function index()
 	{
 		
@@ -15,8 +20,8 @@ class GestionAsistencia extends CI_Controller {
 	public function registrarAsistenciaPersona()
 	{
 			$dni=$this->input->post('txt_dni_consulta',TRUE)."";
-			$this->load->model("asistencia/gestionAsistencia_model");
-			$data=$this->gestionAsistencia_model->registrarAsistenciaPersona($dni);
+			$this->load->model("asistencia/gestionasistencia_model");
+			$data=$this->gestionasistencia_model->registrarAsistenciaPersona($dni);
 			$this->output->set_content_type('json')->set_output(json_encode($data));
 			
 	}
