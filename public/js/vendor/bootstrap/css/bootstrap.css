@@ -3769,6 +3769,7 @@ input[type="submit"].btn.btn-mini {
 .nav-pills > .active > a:hover {
   color: #ffffff;
   background-color: #0088cc;
+  border-radius:5px;
 }
 
 .nav-stacked > li {

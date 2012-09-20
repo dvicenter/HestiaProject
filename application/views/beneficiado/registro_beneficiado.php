@@ -1,13 +1,13 @@
 <div class="panel_trabajo">
 	<div class="menu_registro_beneficiado">		
 		<ul class="nav nav-pills">
-		  <li class="active link_menu_beneficiado">
-		    <a href="#"><i class="icon-list icon-black"></i>Consulta</a>
+		  <li class="active">
+		    <a href="#"class="link_menu_beneficiado"><i class="icon-list icon-black"></i>Consulta</a>
 		  </li>
-		   <li class="link_menu_beneficiado" >
-		    <a href="#"><i class="icon-plus icon-black"></i>Nuevo Registro</a>
+		   <li >
+		    <a href="#" class="link_menu_beneficiado"><i class="icon-plus icon-black"></i>Nuevo Registro</a>
 		  </li>
-		  <li class="dropdown link_menu_beneficiado" >
+		  <li class="dropdown" >
 		    <a class="dropdown-toggle link_menu_beneficiado"
 		       data-toggle="dropdown"
 		       href="#"><i class="icon-print icon-black"></i>
