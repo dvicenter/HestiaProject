@@ -1,6 +1,6 @@
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
+/* ================
+   Estilo Home
+   ================*/
 @font-face {
 	font-family: "Open-Sans";
 	font-style: normal;
@@ -194,7 +194,15 @@ border-left: 1px solid #F3EAD9;
 	vertical-align: top;
 	margin:1%;	
 }
+.panel_trabajo{
+	width:90%;
+	margin :2% auto;
+	
+}
 
+/* ================
+   Estilo Gestion Asistencia
+   ================*/
 .marcado_asistencia_primero{
 	display: block;		
 }
@@ -242,11 +250,6 @@ width: 30%;
 }
 .marcado_asistencia_cuarto{
 	display: block;
-}
-.asistencia{
-	width:90%;
-	margin :2% auto;
-	
 }
 .asistencia_foto{	
   width: 30%;
@@ -361,10 +364,13 @@ color: black;
  	width:20%;
  }
  
+ /* ================
+   Estilo Gestion de Beneficiados
+   ================*/
+  
+  
 /* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   Theses examples override the primary ('mobile first') styles.
-   Modify as content requires.
+   Para media query.
    ========================================================================== */
 
 @media only screen and (min-width: 35em) {

@@ -64,7 +64,7 @@ class Acl
 		$resp = array();
 		foreach( $data as $row )
 		{
-			$resp[] = $row->roleID;
+			$resp[] = $row->IdRol;
 		}
 		return $resp;
 	}
@@ -120,15 +120,15 @@ class Acl
 			$this->ci->db->where(array('IdRol'=>floatval($role)));
 
 		}
-		$this->ci->db->order_by('id','asc');
+		$this->ci->db->order_by('IdRolPermiso','asc');
 		$sql = $this->ci->db->get('rol_permiso'); //$this->ci->db->select($roleSQL);
 		$data = $sql->result();
 		$permisos = array();
 		foreach( $data as $row )
 		{
-			$pK = strtolower($this->getClavePermisoPorId($row->permID));
+			$pK = strtolower($this->getClavePermisoPorId($row->IdPermiso));
 			if ($pK == '') { continue; }
-			if ($row->value === '1') {
+			if ($row->Valor === '1') {
 				$hP = true;
 			} else {
 				$hP = false;

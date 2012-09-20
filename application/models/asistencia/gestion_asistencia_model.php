@@ -1,5 +1,5 @@
 <?php
-class GestionAsistencia_model extends CI_Model {
+class Gestion_asistencia_model extends CI_Model {
  
  
     function __construct()

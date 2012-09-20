@@ -1,4 +1,4 @@
-<div class="asistencia">
+<div class="panel_trabajo">
 	<div class="marcado_asistencia_primero">
 		<div class="asistencia_fecha_sistema">
 			<p id="marcado_asistencia_fecha"></p>
@@ -11,7 +11,7 @@
 	</div>
 	<div class="marcado_asistencia_tercero">	
 			<div class="asistencia_consulta">
-				<form id="marcado_asistencia_form" method="post" action="<?php echo base_url("index.php/asistencia/gestionAsistencia/registrarAsistenciaPersona")?>"> 
+				<form id="marcado_asistencia_form" method="post" action="<?php echo base_url("index.php/asistencia/gestion_asistencia/registrarAsistenciaPersona")?>"> 
 					<div class="input-append">
 	  				<input class="span2" id="codigo_consultar" name="txt_dni_consulta" size="16" type="number">
 	  				<button class="btn " id="boton_consultar"type="submit"><i class="icon-search icon-black"></i></button>
