@@ -28,9 +28,9 @@
 		  	</fieldset>
 	</div>
 	<div class="menu_registro_beneficiado">		
-		 <button class="btn btn-primary" type="button"> <i class="icon-plus icon-white"></i>Nuevo Registro</button>
-		 <button class="btn btn-warning" type="button"> <i class="icon-edit icon-white"></i>Editar Registro</button>
-		 <button class="btn btn btn-danger" type="button"> <i class="icon-minus-sign icon-white"></i>Deshabilitar Registro</button>
+		 <button class="btn btn-small" type="button"> <i class="icon-plus icon-black"></i>Nuevo Registro</button>
+		 <button class="btn btn-small" type="button"> <i class="icon-edit icon-black"></i>Editar Registro</button>
+		 <button class="btn btn-small" type="button"> <i class="icon-minus-sign icon-black"></i>Deshabilitar Registro</button>
 	</div>	
 	<div class="tabla_registro_beneficiado">
 	</div>	
@@ -39,4 +39,5 @@
  <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/jquery.dataTables.css")?>">
  <link rel="stylesheet" href="<?php echo base_url("public/css/jquery/jquery-ui-1.8.4.custom.css")?>">
  <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/jquery.dataTables_themeroller.css")?>">
+ <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/demo_table.css")?>">
  

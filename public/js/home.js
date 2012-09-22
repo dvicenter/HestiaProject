@@ -1,4 +1,5 @@
 $(document).on("ready", evento);
+var oTable;
 function evento (ev)
 {
 	
@@ -102,8 +103,10 @@ function evento (ev)
 	 *Fin script Marcado Asistencia 
 	 */
 	$('.tabla_registro_beneficiado').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="tabla"></table>' );
-	$('#tabla').dataTable( {
-		 "sDom": '<"toolbar">frtip',
+	oTable=$('#tabla').dataTable( {
+		"bFilter": false,
+        "bSort": false,
+        "bLengthChange": false,		
 		"oLanguage": {
             "sLengthMenu": "Mostrar _MENU_ records por página",
             "sZeroRecords": "No hay registros",
@@ -145,8 +148,17 @@ function evento (ev)
             }
         ]
     });
-    
+    $("#tabla tbody tr").click( function( e ) {
+        if ( $(this).hasClass('row_selected') ) {
+            $(this).removeClass('row_selected');
+        }
+        else {
+            oTable.$('tr.row_selected').removeClass('row_selected');
+            $(this).addClass('row_selected');
+        }
+    });
 }
+
  function actualizarReloj(){
  		var currentTime = new Date();
     	var currentHours = currentTime.getHours ( );
