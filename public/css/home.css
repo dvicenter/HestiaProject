@@ -371,7 +371,16 @@ color: black;
  	background: #DFDFDF;
 	color: black;
  }
-  
+ #txt_consulta_beneficiado{
+ 	width: 50%;
+	margin-left: 2%;
+ }
+ .busqueda_caja{
+ 	display:inline;
+ }
+ .boton_exportar{
+ 	margin-left: 2%;
+ }
 /* ==========================================================================
    Para media query.
    ========================================================================== */
