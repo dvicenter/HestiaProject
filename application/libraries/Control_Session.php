@@ -2,7 +2,7 @@
 		if(!defined('BASEPATH'))
 		exit('No direct script access allowed');
 		
-		class Control_Session
+		class Control_session
 		{
 			private $ci;
 		    public function __construct()
