@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/bootstrap/css/bootstrap.css")?>">
         <link rel="stylesheet" href="<?php echo base_url("public/css/home.css")?>">
         <script src="<?php echo base_url("public/js/vendor/modernizr-2.6.1.min.js")?>"></script>
+        <script>window.jQuery || document.write('<script src="<?php echo base_url("public/js/vendor/jquery-1.8.0.min.js")?>"><\/script>')</script>
     </head>
     <body>
     	
@@ -33,13 +34,11 @@
 			</div>
 		</div>        
 		
-        <script src="<?php echo base_url("public/js/vendor/jquery-1.8.0.min.js")?>"></script>
+        
         <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootstrap.min.js")?>"></script>
         <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootstrap-tooltip.js")?>"></script>
         <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootstrap-transition.js")?>"></script>  
-        <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootstrap-collapse.js")?>"></script>          
-        <script>window.jQuery || document.write('<script src="<?php echo base_url("public/js/vendor/jquery-1.8.0.min.js")?>"><\/script>')</script>
-        <script src="<?php echo base_url("public/js/plugins.js")?>"></script>
+        <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootstrap-collapse.js")?>"></script>
         <script src="<?php echo base_url("public/js/home.js")?>"></script>
 
     </body>

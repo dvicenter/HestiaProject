@@ -7,13 +7,13 @@
 			<legend>Búsqueda</legend>			
 			<div class="input-append busqueda_caja">
 			 	<label class="radio inline"> 
-			  	<input type="radio" value="">DNI
+			  	<input type="radio" name="tipo_consulta"value="">DNI
 				</label>
 			 	<label class="radio inline"> 
 			  		<input type="radio" value="">Apellidos y Nombres
 				</label>
 			  	<input class="span2" id="txt_consulta_beneficiado" size="100" type="text">
-			  	<button class="btn" type="input">Buscar</button>						 
+			  	<button class="btn" name="tipo_consulta" type="input">Buscar</button>						 
 			</div>  
 			<div class="btn-group boton_exportar busqueda_caja">
 			  <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
@@ -29,9 +29,14 @@
 	</div>
 	<div class="menu_registro_beneficiado">		
 		 <button class="btn btn-primary" type="button"> <i class="icon-plus icon-white"></i>Nuevo Registro</button>
+		 <button class="btn btn-warning" type="button"> <i class="icon-edit icon-white"></i>Editar Registro</button>
+		 <button class="btn btn btn-danger" type="button"> <i class="icon-minus-sign icon-white"></i>Deshabilitar Registro</button>
 	</div>	
 	<div class="tabla_registro_beneficiado">
-		
-	</div>
-	
+	</div>	
 </div>
+ <script src="<?php echo base_url("public/js/vendor/datatable/js/jquery.dataTables.min.js")?>"></script>
+ <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/jquery.dataTables.css")?>">
+ <link rel="stylesheet" href="<?php echo base_url("public/css/jquery/jquery-ui-1.8.4.custom.css")?>">
+ <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/jquery.dataTables_themeroller.css")?>">
+ 
