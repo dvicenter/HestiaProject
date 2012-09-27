@@ -21,7 +21,7 @@ class Gestion_asistencia extends CI_Controller {
 	{
 			$dni=$this->input->post('txt_dni_consulta',TRUE)."";
 			$this->load->model("asistencia/gestion_asistencia_model");
-			$data=$this->gestionasistencia_model->registrarAsistenciaPersona($dni);
+			$data=$this->gestion_asistencia_model->registrarAsistenciaPersona($dni);
 			$this->output->set_content_type('json')->set_output(json_encode($data));
 	}
 }

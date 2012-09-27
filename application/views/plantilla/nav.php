@@ -48,7 +48,7 @@
 							if($menuTemporal['padre']=="true")
 							{
 								echo '<div id='.$menuTemporal['id'].' data-toggle="collapse"'.' data-target="#'.$menuTemporal['data-target'].'"><li class="nav-header"><img src="'.base_url("public/img/".$menuTemporal['icon'].'"').">".$menuTemporal['nombreMenu'].'</li></div>';
-								echo '<div id='.$menuTemporal['data-target'].' class="collapse out" data-parent="#'.$menuTemporal['id'].'">';
+								echo '<div id='.$menuTemporal['data-target'].' class="collapse" data-parent="#'.$menuTemporal['id'].'">';
 								echo '<li class="divider"></li>';
 								foreach ($menuTemporal['submenu'] as $keySubMenu => $valueMenu) 
 								{

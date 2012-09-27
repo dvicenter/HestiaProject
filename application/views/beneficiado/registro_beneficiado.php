@@ -1,20 +1,20 @@
 <div class="panel_trabajo">	
-	
-	
 	<div class="busqueda_registro_beneficiado">
 	
 			<fieldset>
-			<legend>Búsqueda</legend>			
-			<div class="input-append busqueda_caja">
-			 	<label class="radio inline"> 
-			  	<input type="radio" name="tipo_consulta"value="">DNI
-				</label>
-			 	<label class="radio inline"> 
-			  		<input type="radio" value="">Apellidos y Nombres
-				</label>
-			  	<input class="span2" id="txt_consulta_beneficiado" size="100" type="text">
-			  	<button class="btn" name="tipo_consulta" type="input">Buscar</button>						 
-			</div>  
+			<legend>Búsqueda</legend>	
+			<form id="consultar_beneficiado" action="<?php echo base_url("index.php/beneficiado/gestion_beneficiado/consultarBeneficiado")?>" method="post" style="display: inline">	
+				<div class="input-append busqueda_caja">
+				 	<label class="radio inline"> 
+				  		<input type="radio" name="rbt_tipo_consulta" value="1" >DNI
+					</label>
+				 	<label class="radio inline"> 
+				  		<input type="radio" name="rbt_tipo_consulta" value="2" checked="true">Apellidos y Nombres
+					</label>
+				  	<input class="span2" autofocus="true" id="txt_consulta_beneficiado" name="txt_consulta_beneficiado" size="100" type="text">
+				  	<button class="btn" name="btn_opcion_export" type="input">Buscar</button>						 
+				</div>  
+			</form>	
 			<div class="btn-group boton_exportar busqueda_caja">
 			  <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
 			    <i class="icon-print icon-white"></i>Exportar	
@@ -25,19 +25,44 @@
 			    <li><a>Excel</a></li>
 			  </ul>
 			</div>	
+			
 		  	</fieldset>
 	</div>
 	<div class="menu_registro_beneficiado">		
-		 <button class="btn btn-small" type="button"> <i class="icon-plus icon-black"></i>Nuevo Registro</button>
+		 <button id="btn_agregar_beneficiado" class="btn btn-small" type="button"> <i class="icon-plus icon-black"></i>Nuevo Registro</button>
 		 <button class="btn btn-small" type="button"> <i class="icon-edit icon-black"></i>Editar Registro</button>
 		 <button class="btn btn-small" type="button"> <i class="icon-minus-sign icon-black"></i>Deshabilitar Registro</button>
 	</div>	
 	<div class="tabla_registro_beneficiado">
 	</div>	
+	<div id="myModal" class="modal hide fade">
+    <!-- dialog contents -->
+    <div id="form_beneficiado" class="modal-body">
+		<div class="input-append busqueda_caja">
+				 	<label class="radio inline"> 
+				  		<input type="radio" name="rbt_tipo_consulta" value="1" >DNI
+					</label>
+				 	<label class="radio inline"> 
+				  		<input type="radio" name="rbt_tipo_consulta" value="2" checked="true">Apellidos y Nombres
+					</label>
+				  	<input class="span2" autofocus="true" id="txt_consulta_beneficiado" name="txt_consulta_beneficiado" size="100" type="text">
+				  	<button class="btn" name="btn_opcion_export" type="input">Buscar</button>						 
+		</div>  
+    </div>
+    <!-- dialog buttons -->
+    <div class="modal-footer">
+    	<button type="submit" class="btn primary">Guardar</button>
+    	<button class="btn primary">Cancelar</button>    	
+    </div>
 </div>
- <script src="<?php echo base_url("public/js/vendor/datatable/js/jquery.dataTables.min.js")?>"></script>
+</div>
+ <script src="<?php echo base_url("public/js/vendor/datatable/js/jquery.dataTables.js")?>"></script> 
+ <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootstrap-modal.js")?>"></script>
+ <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootbox.min.js")?>"></script>
+ <script src="<?php echo base_url("public/js/vendor/flexBox/js/jquery.flexbox.min.js")?>"></script>
+ <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/flexBox/css/jquery.flexbox.css")?>">
  <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/jquery.dataTables.css")?>">
- <link rel="stylesheet" href="<?php echo base_url("public/css/jquery/jquery-ui-1.8.4.custom.css")?>">
+ <link rel="stylesheet" href="<?php echo base_url("public/css/jquery/jquery-ui-1.8.23.custom.css")?>">
  <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/jquery.dataTables_themeroller.css")?>">
  <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/demo_table.css")?>">
  

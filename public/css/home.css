@@ -182,7 +182,7 @@ border-left: 1px solid #F3EAD9;
 	display:inline-block;
 	width:74%;
 	border:1px solid orange;
-	height: 520px;
+	min-height: 520px;
 	margin-top:1%;
 	margin-right:0.5%;
 	border-radius: 5px;
@@ -386,7 +386,11 @@ color: black;
  }
  .tabla_registro_beneficiado{
  	margin-top:10px;
+ 	border: 1px solid;
+	border-color: lightGrey;
+	border-radius: 4px;
  }
+ 
 /* ==========================================================================
    Para media query.
    ========================================================================== */

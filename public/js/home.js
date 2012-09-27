@@ -1,8 +1,9 @@
 $(document).on("ready", evento);
 var oTable;
+	
+
 function evento (ev)
 {
-	
 	// arreglo de ciclos
 	var ciclos=['I','II','III','IV','V','VI','VII','VIII','IX','X']
    /**
@@ -11,6 +12,17 @@ function evento (ev)
    var server="http://localhost:81/HestiaProject/";
    var win_location=window.location+"";
    var id = win_location.match(/\/([^\/]+)[\/]?$/);   
+   
+   var offset = 10;
+
+        // Our scroll target : the top position of the
+        // section that has the id referenced by our href.
+        var target = $("#mod_panel").offset().top - offset;
+		console.log(target);
+        // The magic...smooth scrollin' goodness.
+        $('html, body').animate({scrollTop:target}, 500);
+	   
+   
    
    if(id["1"]!="")
    {	
@@ -21,7 +33,9 @@ function evento (ev)
    $(".item_menu_nav").click(function(){
 	   
 	   	location.reload(true);
-	   
+
+        // An offset to push the content down from the top.
+        
    });   
 
    $('input[name="boton_registrar_login"]').button();
@@ -111,42 +125,44 @@ function evento (ev)
             "sLengthMenu": "Mostrar _MENU_ records por página",
             "sZeroRecords": "No hay registros",
             "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando 0 de 0 of 0 registros"
+            "sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
+            "sProcessing":"Procesando",
+            "oPaginate": {
+            	'sNext':"Siguiente",
+            	'sFirst':"Primero",
+            	'sLast':"Último",
+            	'sPrevious':"Atrás"
+            }
        },
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers",
-		 "aaData": [
-            /* Reduced data set */
-            [ "Trident", "Internet Explorer 4.0", "Win 95+", 4, "X" ],
-            [ "Trident", "Internet Explorer 5.0", "Win 95+", 5, "C" ],
-            [ "Trident", "Internet Explorer 5.5", "Win 95+", 5.5, "A" ],
-            [ "Trident", "Internet Explorer 6.0", "Win 98+", 6, "A" ],
-            [ "Trident", "Internet Explorer 7.0", "Win XP SP2+", 7, "A" ],
-            [ "Gecko", "Firefox 1.5", "Win 98+ / OSX.2+", 1.8, "A" ],
-            [ "Gecko", "Firefox 2", "Win 98+ / OSX.2+", 1.8, "A" ],
-            [ "Gecko", "Firefox 3", "Win 2k+ / OSX.3+", 1.9, "A" ],
-            [ "Webkit", "Safari 1.2", "OSX.3", 125.5, "A" ],
-            [ "Webkit", "Safari 1.3", "OSX.3", 312.8, "A" ],
-            [ "Webkit", "Safari 2.0", "OSX.4+", 419.3, "A" ],
-            [ "Webkit", "Safari 3.0", "OSX.4+", 522.1, "A" ]
-        ],
         "aoColumns": [
-            { "sTitle": "Engine" },
-            { "sTitle": "Browser" },
-            { "sTitle": "Platform" },
-            { "sTitle": "Version", "sClass": "center" },
-            {
-                "sTitle": "Grade",
-                "sClass": "center",
-                "fnRender": function(obj) {
-                    var sReturn = obj.aData[ obj.iDataColumn ];
-                    if ( sReturn == "A" ) {
-                        sReturn = "<b>A</b>";
-                    }
-                    return sReturn;
-                }
-            }
-        ]
+            { "sTitle": "DNI", "mDataProp":'DNI' },
+            { "sTitle": "Apellidos y Nombres", "mDataProp":'NombresCompletos' },
+            { "sTitle": "Escuela" , "mDataProp":'NombreCarreraProfesional'},
+            { "sTitle": "Ciclo" , "mDataProp":'NumCiclo'},
+            { "sTitle": "Estado" , "mDataProp":'CondicionFinal'}
+         ],
+        "bProcessing": true,
+		"bServerSide": true,
+		"iDisplayLength": 15,
+		"sAjaxSource": server+"index.php/beneficiado/gestion_beneficiado/consultarBeneficiado",
+		"fnServerData": function ( sSource, aoData, fnCallback ) {
+			aoData.push(
+				  {
+				   'name':"txt_consulta_beneficiado",
+				   'value':$("input[name='txt_consulta_beneficiado']").val()
+				  });
+			aoData.push(
+				   {
+				 	'name':"rbt_tipo_consulta",
+				 	'value':$("input:radio[name='rbt_tipo_consulta']:checked").val()
+				  });
+			$.getJSON( sSource, aoData, function (json) { 
+				fnCallback(json);
+				
+			} );
+    	}
     });
     $("#tabla tbody tr").click( function( e ) {
         if ( $(this).hasClass('row_selected') ) {
@@ -157,6 +173,20 @@ function evento (ev)
             $(this).addClass('row_selected');
         }
     });
+    $("#consultar_beneficiado").submit(function(e){
+    	
+		oTable.fnDraw();
+		return false;
+    });
+    $("#btn_agregar_beneficiado").click(function(){
+    	$("#form_beneficiado").modal("show");
+    });
+  	$("#form_beneficiado").modal({
+  	"backdrop"  : "static",
+  	"keyboard"  : true,
+  	"show"      : false 
+	});
+	 
 }
 
  function actualizarReloj(){

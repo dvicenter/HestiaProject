@@ -29,7 +29,7 @@
 			<div class="seccion_left">
 				 <?php echo $nav;?>
 			</div>
-			<div class="seccion_right">
+			<div id="mod_panel" class="seccion_right">
 				  <?php echo $content; ?>					
 			</div>
 		</div>        
