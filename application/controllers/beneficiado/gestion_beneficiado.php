@@ -28,5 +28,15 @@
 			$data=$this->gestion_beneficiado_model->consultarBeneficiados($parametro,$tipo,$inicio,$tamanio,$sEcho);
 			$this->output->set_content_type('json')->set_output(json_encode($data));	
 	}
+	public function consultarBeneficiadoFiltro()
+	{
+			$parametro=$this->input->get('q',TRUE)."";
+			$tipo=2;
+			$inicio=$this->input->get('p',TRUE)."";
+			$tamanio=$this->input->get('s',TRUE)."";
+			$this->load->model("beneficiado/gestion_beneficiado_model");
+			$data=$this->gestion_beneficiado_model->consultarBeneficiadosFiltro($parametro,$tipo,$inicio,$tamanio);
+			$this->output->set_content_type('json')->set_output(json_encode($data));	
+	}
 }
 ?>

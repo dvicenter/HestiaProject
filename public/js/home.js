@@ -178,6 +178,18 @@ function evento (ev)
 		oTable.fnDraw();
 		return false;
     });
+    
+    $("#form_beneficiado").on("show", function() {    // wire up the OK button to dismiss the modal when shown
+	    $("#btn_cancelar_form_beneficiado").on("click", function(e) {
+	        $("#form_beneficiado").modal('hide');     // dismiss the dialog
+	    });
+	});
+	
+	$("#form_beneficiado").on("hide", function() {    // remove the event listeners when the dialog is dismissed
+	    $("#btn_cancelar_form_beneficiado").off("click");
+	});
+
+    
     $("#btn_agregar_beneficiado").click(function(){
     	$("#form_beneficiado").modal("show");
     });
@@ -186,7 +198,18 @@ function evento (ev)
   	"keyboard"  : true,
   	"show"      : false 
 	});
-	 
+	$('#ffb2').flexbox(server+"index.php/beneficiado/gestion_beneficiado/consultarBeneficiadoFiltro",{
+		 showResults: true,  
+		 watermark: 'Ingrese los datos',
+		 displayValue:"NombresCompletos",
+		 hiddenValue:"DNI",
+		 width:300,
+		 resultTemplate:'{NombresCompletos}',
+		 showArrow:false,
+		 paging: {  
+        	pageSize: 5  
+    	}   
+	});
 }
 
  function actualizarReloj(){

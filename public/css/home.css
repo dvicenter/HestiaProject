@@ -390,7 +390,36 @@ color: black;
 	border-color: lightGrey;
 	border-radius: 4px;
  }
- 
+ .content{
+ 	font-size: 14px;
+ }
+ #ffb2{
+ 	display:inline-block;
+ 	vertical-align: middle;
+	margin-left: 7px;
+ }
+ .div_form_beneficiado{
+ 	display: block;
+ 	margin-top:15px;
+ 	width:100%;
+ }
+ .inline_div_form_beneficiado {
+ 	display: inline-block;
+ 	width: 50%;
+ }
+ .inline_div_form_beneficiado input{
+ 	width: 80%;
+ }
+ .block_div_form_beneficiado{
+ 	display: block;
+ }
+ .cien_div_form_beneficiado{
+ 	width:100%;
+ 	display: block;
+ }
+ .cien_div_form_beneficiado input{
+ 	width:91%;
+ }
 /* ==========================================================================
    Para media query.
    ========================================================================== */
