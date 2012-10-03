@@ -191,25 +191,30 @@ function evento (ev)
 
     
     $("#btn_agregar_beneficiado").click(function(){
-    	$("#form_beneficiado").modal("show");
+    	$('#panel_trabajo').hide().load(server+"index.php/beneficiado/gestion_beneficiado/nuevoBeneficiado").fadeIn('normal');
+    	
+    	$.getScript(server+"public/js/vendor/bootstrap/js/bootstrap-modal.js")
+		.done(function(script, textStatus) {				
+		$.getScript(server+"public/js/vendor/bootstrap/js/bootbox.min.js")			
+		.done(function(script, textStatus) {
+		$.getScript(server+"public/js/vendor/flexBox/js/jquery.flexbox.js")
+		.done(function(script, textStatus) {							
+				$('#ffb2').flexbox(server+"index.php/beneficiado/gestion_beneficiado/consultarBeneficiadoFiltro",{
+					 showResults: true,  
+					 watermark: 'Ingrese los datos',
+					 displayValue:"NombresCompletos",
+					 hiddenValue:"DNI",
+					 width:300,
+					 resultTemplate:'{NombresCompletos}',
+					 showArrow:false,
+					 paging: {  
+			        	pageSize: 5  
+			    	}});
+				
+				});  	
+			}); 
+		});
     });
-  	$("#form_beneficiado").modal({
-  	"backdrop"  : "static",
-  	"keyboard"  : true,
-  	"show"      : false 
-	});
-	$('#ffb2').flexbox(server+"index.php/beneficiado/gestion_beneficiado/consultarBeneficiadoFiltro",{
-		 showResults: true,  
-		 watermark: 'Ingrese los datos',
-		 displayValue:"NombresCompletos",
-		 hiddenValue:"DNI",
-		 width:300,
-		 resultTemplate:'{NombresCompletos}',
-		 showArrow:false,
-		 paging: {  
-        	pageSize: 5  
-    	}   
-	});
 }
 
  function actualizarReloj(){

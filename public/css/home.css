@@ -410,6 +410,13 @@ color: black;
  .inline_div_form_beneficiado input{
  	width: 80%;
  }
+ .inline_div_form_beneficiado_3{
+ 	width:30%;
+ 	display: inline-block;
+ }
+ .inline_div_form_beneficiado_3 input{
+ 	width: 80%;
+ }
  .block_div_form_beneficiado{
  	display: block;
  }
@@ -419,6 +426,13 @@ color: black;
  }
  .cien_div_form_beneficiado input{
  	width:91%;
+ }
+ .icon-birrete{
+ 	background-image: url("../img/birrete_16x16.png");
+ 	background-position: 0;
+ }
+.radio input[name="rbt_sexo"]{
+ 	width:auto;
  }
 /* ==========================================================================
    Para media query.

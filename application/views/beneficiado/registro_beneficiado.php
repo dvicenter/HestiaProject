@@ -1,4 +1,4 @@
-<div class="panel_trabajo">	
+<div id="panel_trabajo" class="panel_trabajo">	
 	<div class="busqueda_registro_beneficiado">
 	
 			<fieldset>
@@ -35,59 +35,9 @@
 	</div>	
 	<div class="tabla_registro_beneficiado">
 	</div>	
-	<div id="form_beneficiado" class="modal hide fade">
-    <!-- dialog contents -->
-    <div  class="modal-body">		
-		<fieldset>
-			<legend>Registrar a Beneficiado</legend>
-			 	<label class="radio inline"> 
-			  		<input type="radio" name="rbt_tipo_consulta" value="1" >DNI
-				</label>
-			 	<label class="radio inline"> 
-			  		<input type="radio" name="rbt_tipo_consulta" value="2" checked="true">Apellidos y Nombres
-				</label>
-				<div id="ffb2"></div>	
-				<div class="input-prepend">
-				<div class="div_form_beneficiado">
-					<div class="inline_div_form_beneficiado">
-						<label>Apellido Paterno</label>
-						<div class="block_div_form_beneficiado">
-  							<span class="add-on"><i class="icon-user"></i></span><input class="span2" id="prependedInput" size="16" type="text" placeholder="Apellido Paterno">
-  						</div>
-  					</div>
-  					<div style="margin-left: 5px" class="inline_div_form_beneficiado">
-  						<label>Apellido Materno</label>
-  						<div class="block_div_form_beneficiado">
-  							<span class="add-on"><i class="icon-user"></i></span><input class="span2" id="prependedInput" size="16" type="text" placeholder="Apellido Paterno">
-  						</div>
-  					</div>
-  				</div>
-  				<div class="div_form_beneficiado">
-					<label>Nombres Completos</label>
-					<div class="cien_div_form_beneficiado">
-						<span class="add-on"><i class="icon-user"></i></span><input class="span2" id="prependedInput" size="16" type="text" placeholder="Apellido Paterno">
-					</div>
-				</div>
-				<div class="div_form_beneficiado">
-					<label>Carrera Profesional</label>
-					<div class="cien_div_form_beneficiado">
-						<span class="add-on"><i class="icon-user"></i></span><input class="span2" id="prependedInput" size="16" type="text" placeholder="Apellido Paterno">
-					</div>
-				</div>
-		</fieldset>			  	
-    </div>
-    <!-- dialog buttons -->
-    <div class="modal-footer">
-    	<button type="submit" class="btn btn-success">Guardar</button>
-    	<button id="btn_cancelar_form_beneficiado"class="btn btn-danger">Cancelar</button>    	
-    </div>
+	
 </div>
-</div>
- <script src="<?php echo base_url("public/js/vendor/datatable/js/jquery.dataTables.js")?>"></script> 
- <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootstrap-modal.js")?>"></script>
- <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootbox.min.js")?>"></script>
- <script src="<?php echo base_url("public/js/vendor/flexBox/js/jquery.flexbox.js")?>"></script>
- <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/flexBox/css/jquery.flexbox.css")?>">
+ <script src="<?php echo base_url("public/js/vendor/datatable/js/jquery.dataTables.js")?>"></script>
  <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/jquery.dataTables.css")?>">
  <link rel="stylesheet" href="<?php echo base_url("public/css/jquery/jquery-ui-1.8.23.custom.css")?>">
  <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/jquery.dataTables_themeroller.css")?>">

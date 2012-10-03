@@ -17,6 +17,10 @@
 			$template['content'] = $this->load->view('beneficiado/registro_beneficiado','',true);			
 			$this->load->view('plantilla/plantilla', $template);
 	}
+	public function nuevoBeneficiado()
+	{		
+			 $this->load->view('beneficiado/nuevo_beneficiado');
+	}
 	public function consultarBeneficiado()
 	{
 			$parametro=$this->input->get('txt_consulta_beneficiado',TRUE)."";
