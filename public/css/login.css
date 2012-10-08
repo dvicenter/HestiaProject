@@ -13,9 +13,9 @@ html{
 	height: 100%;
 }
 header{
-	background: white;
+	/*background: white;*/
 	text-align: center;	
-	border-bottom-style: dotted;
+	/*border-bottom-style: dotted;*/
 	border-color:#474E4B;
 	padding:0.5%;
 }
@@ -44,8 +44,9 @@ header p{
 }
 body{
 	font-family: 'Calibri';	
-	background-color: #1B1B1B;
-	background-size: 20px 20px
+	/*background-color: #1B1B1B;
+	background-size: 20px 20px;*/
+	background: url(../img/bg_login.jpg) repeat-x #1B1B1B;
 }
 .cuerpo_login{	
 	display:block;
@@ -83,7 +84,7 @@ body{
 	display: inline-block;	
 	width:25%;	
 	background-color: whitesmoke;	
-	box-shadow: 0 0 5px 5px #474E4B;	
+	box-shadow: 0 0 5px 5px #766c68;/* before: 474E4B*/	
 }
 
 footer{
