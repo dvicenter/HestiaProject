@@ -100,6 +100,7 @@ nav{
 }
 .item_menu_nav {
 	padding: 8px 14px;
+	margin-bottom:10px;
 }
 .item_menu_nav:hover {
 background-color: #C4C4C4;
@@ -181,14 +182,12 @@ border-left: 1px solid #F3EAD9;
   vertical-align: middle;
 }
 .seccion_right{
-	
 	background-color: whitesmoke;
 	display:inline-block;
 	width:74%;
 	border:1px solid orange;
 	min-height: 520px;
-	margin-top:1%;
-	margin-right:0.5%;
+	margin:1% 0.5% 1% 0;
 	border-radius: 5px;
 	
 }
