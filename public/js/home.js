@@ -9,7 +9,7 @@ function evento (ev)
    /**
     *  Script del Nav
     */
-   var server="http://localhost:80/HestiaProject/";
+   var server="http://localhost:81/HestiaProject/";
    var win_location=window.location+"";
    var id = win_location.match(/\/([^\/]+)[\/]?$/);   
    
