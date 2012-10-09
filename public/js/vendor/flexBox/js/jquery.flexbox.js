@@ -61,9 +61,11 @@
             .attr('name', $div.attr('id'))
             .val(o.initialValue)
             .appendTo($div);
+        
         var $input = $('<input/>')
             .attr('id', $div.attr('id') + '_input')
             .attr('autocomplete', 'off')
+            .attr('type', 'text')
             .addClass(o.inputClass)
             .css('width', o.width + 'px')
             .appendTo($div)
@@ -129,8 +131,8 @@
         // Handle presence of CSS Universal Selector (*) that defines padding by verifying what the browser thinks the outerHeight is.
         // In FF, the outerHeight() will not pick up the correct input field padding
         var inputPad = $input.outerHeight() - $input.height() - 2;
-        var inputWidth = $input.outerWidth() - 2;
-        var top = $input.outerHeight();
+        var inputWidth = $input.width();
+        var top = $("#ffb2_input").height()+2;
 		
         if (inputPad === 0) {
             inputWidth += 4;
@@ -431,6 +433,7 @@
             else if (o.paging.style === 'input') {
                 var $pagingBox = $('<input/>')
                     .addClass('box')
+                    .attr('type',"text")
                     .click(function(e) {
                         this.select();
                     })
@@ -461,7 +464,7 @@
                     "pages": totalPages
                 };
                 var html = o.paging.summaryTemplate.applyTemplate(summaryData);
-                $('<br/>').appendTo($paging);
+                
                 $('<span></span>')
                     .addClass(o.paging.summaryClass)
                     .html(html)
