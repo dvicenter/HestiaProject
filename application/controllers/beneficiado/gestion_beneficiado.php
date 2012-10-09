@@ -48,7 +48,7 @@
 			$parametro=$this->input->get('txt_consulta_beneficiado',TRUE)."";
 			$tipo=$this->input->get('rbt_tipo_consulta',TRUE)."";
 			$this->load->model("beneficiado/gestion_beneficiado_model");
-			$data=$this->gestion_beneficiado_model->exportarBeneficiados($parametro,$tipo);
+			$data=$this->gestion_beneficiado_model->exportarBeneficiados('manrique',1);
 			$this->load->library('cezpdf');
 			$this->load->helper('pdf_helper');
 			preparar_pdf();		
@@ -65,71 +65,6 @@
 	}
 	
 	
-	function hello_world()
-{
-	$this->load->library('cezpdf');
-	$this->cezpdf->ezText('Hello World',12,array('justification'=>'justify'));
-	$this->cezpdf->ezSetDy(-10);
-	$content = 'Primero un saludo y me da gusto encontrat una comunidad de codeigniter en español, bueno vamos a lo que me interesa, mi consulta es si alguien a realizado algun reporte en pdf con codeigniter dado que soy nuevo en el uso de es te y deseo su se puede me den una mano con este asunto, de antemano agradesco su ayuda.';
-	$this->cezpdf->ezText($content,10);
-	$this->cezpdf->ezStream();
-}
-
-function tables()
-{
-	$this->load->library('cezpdf');
-	$db_data[] = array('name'=>'Cesar Mandamiento','phone'=>'980312797','email'=>'cesaramdaniento@gmail.com');
-	
-	$col_names = array(
-		'name' => 'Name',
-		'phone' => 'Phone Number',
-		'email' => 'E-Mail'
-	);
-	$this->cezpdf->ezTable($table_data,$col_names,'Contact List',array('width'=>550));
-	$thiz->cezpdf->ezStream();
-}
-
-function headers()
-{
-	$this->load->library('cezpdf');
-	$this->load->helper('pdf');
-	preparar_pdf();
-	
-	$db_data[] = array('name'=>'Cesar Mandamiento','phone'=>'980312797','email'=>'cesaramdaniento@gmail.com');
-	$col_names = array(
-		'name' => 'Name',
-		'phone' => 'Phone Number',
-		'email' => 'E-Mail'
-	);
-	$this->cezpdf->ezTable($table_data,$col_names,'Contact List',array('width'=>550));
-	$thiz->cezpdf->ezStream();
-}
-
-public function generar_pdf()
-{
-	$this->load->database();
-	$this->load->library('cezpdf');
-	$this->load->helper('pdf_helper');
-	preparar_pdf();
-	
-	$this->cezpdf->ezText('<b>Prueba:</b> Hestia');
-	$this->cezpdf->ezText('<b>Fecha:</b> '.date('Y-m-d'));
-	$this->cezpdf->ezText('');
-	
-	$mes = $this->input->post('txtmes');
-	
-	$this->load->model('reporte_model');
-	
-	$listar_reporte = $this->reporte_model->listar_reporte($mes);
-	
-	foreach ($listar_reporte as $value) {
-		$db_data[]=array('id'=>$value['id']);
-	}
-	
-	$col_names = array('id'=>'ID USERNAME');
-	$this->cezpdf->ezTable($db_data, $col_names,'Listado busqueda',array('width'=>600));
-	$this->cezpdf->ezStream(array('Content-Disposition'=>'name_file.pdf'));
-}
 	
 }
 ?>
