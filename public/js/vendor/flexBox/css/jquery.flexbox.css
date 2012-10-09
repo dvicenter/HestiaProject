@@ -4,6 +4,7 @@
 	float:left;
 	color:#000; /* must specify along with watermark color */
 	height:16px; /* required for webkit browsers (Safari, Chrome) */
+	margin-bottom: 0px !important;
 }
 /* Color of watermark, if present */
 .ffb-input.watermark { /* added and removed dynamically */
@@ -40,6 +41,7 @@
 	border-left:1px solid #828790; /* #7B9EBD for Vista */
 	border-right:1px solid #828790;
 	background-color:#fff; /* Give it a background-color, so it's not transparent */
+	border-radius: 0 0 5px 5px;
 }
 /* Inner div for dropdown */
 .ffb .content {
@@ -51,12 +53,7 @@
 	height:20px;
 	clear:both;
 }
-.ffb-sel {
-	cursor:pointer;
-	cursor:hand;
-	color:#fff !important;
-	background-color:#39f;
-}
+
 .ffb-match {
 	font-weight:bold;
 	color:#000;
@@ -73,11 +70,47 @@
 	border:solid 1px #339;
 	background-color:#eef;
 	margin:2px;
+	border-radius: 3px;
+	vertical-align: middle;
 }
+
+.row:hover   {
+	 color: white !important;
+  text-decoration: none;
+  background-color: #0088cc;
+  background-color: #0081c2;
+  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  background-repeat: repeat-x;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+}
+.ffb-sel {
+	cursor:pointer;
+	cursor:hand;
+	 color: white !important;
+  text-decoration: none;
+  background-color: #0088cc;
+  background-color: #0081c2;
+  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  background-repeat: repeat-x;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+}
+ 
 .ffb .box {
-	width:22px;
+	width:15px;
 	margin:2px;
+	text-align: center;
+	height: 12px !important;
 }
 .ffb .summary {
 	font-size:85%;
+	margin:4%;
+	vertical-align: middle;
 }

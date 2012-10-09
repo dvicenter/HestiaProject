@@ -4,12 +4,17 @@ var oTable;
 
 function evento (ev)
 {
+	
+	$.ajaxSetup({
+  	cache: false
+	});
+
 	// arreglo de ciclos
 	var ciclos=['I','II','III','IV','V','VI','VII','VIII','IX','X']
    /**
     *  Script del Nav
     */
-   var server="http://localhost:80/HestiaProject/";
+   var server="http://localhost:81/HestiaProject/";
    var win_location=window.location+"";
    var id = win_location.match(/\/([^\/]+)[\/]?$/);   
    
@@ -204,11 +209,13 @@ function evento (ev)
 					 watermark: 'Ingrese los datos',
 					 displayValue:"NombresCompletos",
 					 hiddenValue:"DNI",
-					 width:300,
+					 width:400,
 					 resultTemplate:'{NombresCompletos}',
 					 showArrow:false,
+					 
 					 paging: {  
-			        	pageSize: 5  
+			        	pageSize: 5,
+			        	summaryTemplate: 'Mostrando {start}-{end} de {total} resultados'   
 			    	}});
 				
 				});  	
