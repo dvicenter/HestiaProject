@@ -137,7 +137,7 @@ class Gestion_beneficiado_model extends CI_Model {
 		    $dataBeneficiado = $sqlBeneficiado->result();
 			$rowcount = $sqlBeneficiado->num_rows();
 			$lista_coincidencias=array();
-			$ouput=null;
+			$output=null;
 			if($sqlBeneficiado->num_rows()!=0)
 			{
 						$indice = 0;
