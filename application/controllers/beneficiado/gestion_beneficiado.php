@@ -45,23 +45,30 @@
 	
 	public function exportarBeneficiado()
 	{
+			//error_reporting(E_ALL ^ E_NOTICE);
 			$parametro=$this->input->get('txt_consulta_beneficiado',TRUE)."";
 			$tipo=$this->input->get('rbt_tipo_consulta',TRUE)."";
 			$this->load->model("beneficiado/gestion_beneficiado_model");
-			$data=$this->gestion_beneficiado_model->exportarBeneficiados('manrique',1);
+			$data=$this->gestion_beneficiado_model->exportarBeneficiados('manrique',2);
+			
 			$this->load->library('cezpdf');
 			$this->load->helper('pdf_helper');
 			preparar_pdf();		
-			$this->cezpdf->ezText('<b>Reporte Hestia</b>');
-			$this->cezpdf->ezText('<b>Fecha:</b> '.date('Y-m-d'));
-			$this->cezpdf->ezText('');		
-			foreach ($data as $value) {
-				$db_data[]=array('dni'=>$value['dni'],'nombrescompletos'=>$value['NombresCompletos'],'nombrecarreraprofesional'=>$value['NombreCarreraProfesional'],'numciclo'=>$value['NumCiclo'],'condicionfinal'=>$value['CondicionFinal']);
-			}
 			
+			//$this->cezpdf->ezText('<b>Reporte Hestia</b>');
+			//$this->cezpdf->ezText('<b>Fecha:</b> '.date('Y-m-d'));
+			//$this->cezpdf->ezText('');
+			
+			$db_data=array();
+			foreach ($data as $value) 
+			{
+				$db_data[]=array('dni'=>$value['dni'],'nombrescompletos'=>$value['nombrescompletos'],'nombrecarreraprofesional'=>$value['nombrecarreraprofesional'],'numciclo'=>$value['numciclo'],'condicionfinal'=>$value['condicionfinal']);
+			}	
+			 	
 			$col_names = array('dni'=>'DNI','nombrescompletos'=>'Nombres','nombrecarreraprofesional'=>'Carrera Profesional','numciclo'=>'Ciclo','condicionfinal'=>'Condicion');
-			$this->cezpdf->ezTable($db_data, $col_names,'Listado busqueda',array('width'=>550));
+			$this->cezpdf->ezTable($db_data, $col_names,'Listado busqueda',array('width'=>550,'fontSize'=>10));
 			$this->cezpdf->ezStream(array('Content-Disposition'=>'name_file.pdf'));
+			 
 	}
 	
 	

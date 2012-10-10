@@ -137,7 +137,9 @@ class Gestion_beneficiado_model extends CI_Model {
 		    $dataBeneficiado = $sqlBeneficiado->result();
 			$rowcount = $sqlBeneficiado->num_rows();
 			$lista_coincidencias=array();
-			$ouput=null;
+		//	echo $this->db->last_query();
+		// Con la linea de arriba haces debug a tus querys echos. 
+			$output=null;
 			if($sqlBeneficiado->num_rows()!=0)
 			{
 						$indice = 0;
@@ -150,19 +152,7 @@ class Gestion_beneficiado_model extends CI_Model {
 							$lista_coincidencias[$indice]['condicionfinal']=$value->CondicionFinal;
 							$indice++;
 						}			
-						$this->db->select('count(*) as total');		
-				    	$this->db->from('beneficiado');
-						if($tipo==1)
-						{
-			    			$this->db->like('DNI',$parametro,'after');
-						}
-						else 
-						{
-							$this->db->like('NombresCompletos', $parametro,'after');
-						}
-						$sqlTotal= $this->db->get();
-					    $dataTotal = $sqlTotal->result();
-						$output = $lista_coincidencias;
+				$output = $lista_coincidencias;
 				
 			}
 			return $output ;
