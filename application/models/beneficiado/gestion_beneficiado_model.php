@@ -137,8 +137,6 @@ class Gestion_beneficiado_model extends CI_Model {
 		    $dataBeneficiado = $sqlBeneficiado->result();
 			$rowcount = $sqlBeneficiado->num_rows();
 			$lista_coincidencias=array();
-		//	echo $this->db->last_query();
-		// Con la linea de arriba haces debug a tus querys echos. 
 			$output=null;
 			if($sqlBeneficiado->num_rows()!=0)
 			{
