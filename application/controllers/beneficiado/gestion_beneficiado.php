@@ -136,78 +136,30 @@
 			
 	}
 
-	function Header()
-    {
-	    //Logo
-	    $this->Image("http://4.bp.blogspot.com/_BSRFkkxuSEI/TDih0WqUGTI/AAAAAAAAGj4/fg0WTNspPxQ/s320/UNJFSC.png" , 10 ,8, 35 , 38 , "JPG" ,"http://www.mipagina.com");
-	    //Arial bold 15
-	    $this->SetFont('Arial','B',15);
-	    //Movernos a la derecha
-	    $this->Cell(80);
-	    //Título
-	    $this->Cell(60,10,'Titulo del archivo',1,0,'C');
-	    //Salto de línea
-	    $this->Ln(20);
-	}
-   
-	   //Pie de página
-	function Footer()
-	{
-	    //Posición: a 1,5 cm del final
-	    $this->fpdf->SetY(-15);
-	    //Arial italic 8
-	    $this->fpdf->SetFont('Arial','I',8);
-	    //Número de página
-	   	$this->fpdf->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
-	}
+	
       //Tabla coloreada
-	function TablaColores($header)
-	{
-		//Colores, ancho de línea y fuente en negrita
-		$this->fpdf->SetFillColor(255,0,0);
-		$this->fpdf->SetTextColor(255);
-		$this->fpdf->SetDrawColor(128,0,0);
-		$this->fpdf->SetLineWidth(.3);
-		$this->fpdf->SetFont('Arial','B');
-		//Cabecera
-		for($i=0;$i<count($header);$i++)
-		$this->fpdf->Cell(40,7,$header[$i],1,0,'C',1);
-		$this->fpdf->Ln();
-		//Restauración de colores y fuentes
-		$this->fpdf->SetFillColor(224,235,255);
-		$this->fpdf->SetTextColor(0);
-		$this->fpdf->SetFont('');
-		//Datos
-		$fill=false;
-		$this->fpdf->Cell(40,6,"hola",'LR',0,'L',$fill);
-		$this->fpdf->Cell(40,6,"hola2",'LR',0,'L',$fill);
-		$this->fpdf->Cell(40,6,"hola3",'LR',0,'R',$fill);
-		$this->fpdf->Cell(40,6,"hola4",'LR',0,'R',$fill);
-		$this->fpdf->Ln();
-		$fill=!$fill;
-		$this->fpdf->Cell(40,6,"col",'LR',0,'L',$fill);
-		$this->fpdf->Cell(40,6,"col2",'LR',0,'L',$fill);
-		$this->fpdf->Cell(40,6,"col3",'LR',0,'R',$fill);
-		$this->fpdf->Cell(40,6,"col4",'LR',0,'R',$fill);
-		$fill=true;
-		$this->fpdf->Ln();
-		$this->fpdf->Cell(160,0,'','T');
-	}
+	
    public function exportarBeneficiado2()
 	{
 			$this->load->library('fpdf');
+			$this->load->helper('fpdf_helper');
+				
+			$parametro=$this->input->get('txt_consulta_beneficiado',TRUE)."";
+			$tipo=$this->input->get('rbt_tipo_consulta',TRUE)."";
+			$this->load->model("beneficiado/gestion_beneficiado_model");
+			$data=$this->gestion_beneficiado_model->exportarBeneficiados('manrique',2);
 			//$pdf=$this->fpdf->PDF();
 			//Títulos de las columnas
-			$header=array('Columna 1','Columna 2','Columna 3','Columna 4');
+			$header=array('DNI','APELLIDOS Y NOMBRES','CARRERA PROFESIONAL','CICLO',utf8_decode('CONDICIÓN'));
 			$this->fpdf->AliasNbPages();
 			//Primera página
 			$this->fpdf->AddPage();
+			headerPDF();
 			$this->fpdf->SetY(65);
 			//$pdf->AddPage();
-			$this->TablaColores($header);
+			tablaPDF($header,$data);
 			//Segunda página
-			$this->fpdf->AddPage();
-			$this->fpdf->SetY(65);
+			footerPDF();
 			$this->fpdf->Output();			
 	}
 	
