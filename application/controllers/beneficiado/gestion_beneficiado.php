@@ -162,6 +162,49 @@
 			footerPDF();
 			$this->fpdf->Output();			
 	}
+	public function tcpdf()
+	{
+		$this->load->library('tcpdf/tcpdf');
+		$this->load->helper('tcpdf_helper');
+		$parametro=$this->input->get('txt_consulta_beneficiado',TRUE)."";
+		$parametro = 'pa';
+		$tipo=$this->input->get('rbt_tipo_consulta',TRUE)."";
+		$this->load->model("beneficiado/gestion_beneficiado_model");
+		$data=$this->gestion_beneficiado_model->exportarBeneficiados($parametro,2);
+        // set document information
+        $this->tcpdf->SetSubject('TCPDF Tutorial');
+        $this->tcpdf->SetAuthor('Hestia');
+		// CONFIGURANDO HEADER :D
+        $this->tcpdf->SetKeywords('TCPDF, PDF, example, test, guide');
+		$this->tcpdf->SetHeaderData('', 0, 'UNIVERSIDAD NACIONAL JOSÉ FAUSTINO SÁNCHEZ CARRIÓN', 'UNIDAD DE COMEDOR UNIVERSITARIO');
+		$this->tcpdf->setHeaderFont(Array('', '', '16'));
+		$this->tcpdf->SetHeaderMargin(5);
+		$this->tcpdf->SetMargins(15, 30, 10);
+		// CONFIGURANDO PIE :D
+		date_default_timezone_set('Etc/GMT+5');
+		$this->tcpdf->SetFooterData('','','Reporte emitido por Hestia - '.date("d/m/Y H:i:s"));
+        // set font
+        //$this->tcpdf->SetFont('times', 'BI', 16);
+        // add a page
+        $this->tcpdf->AddPage();
+        // print a line using Cell()
+        $table = 'Resultados de la consulta: '.$parametro.'<br /><br />';
+        
+        $table .= '<table border="1" align="center" style="font-size:28px;"><tr><td width="10%">DNI</td><td width="43%">APELLIDOS Y NOMBRES</td><td width="25%">CARRERA PROFESIONAL</td><td width="7%">CICLO</td><td width="15%">ESTADO</td></tr>';
+		foreach ($data as $resultado){ //usando los datos de mysql
+		$table .= '<tr>'.
+			'<td width="10%" align="center">'.$resultado['dni'].'</td>'.
+			'<td width="43%" align="center">'.$resultado['nombrescompletos'].'</td>'.
+			'<td width="25%" align="center">'.$resultado['nombrecarreraprofesional'].'</td>'.
+			'<td width="7%" align="center">'.cicloRomano($resultado['numciclo']).'</td>'.
+			'<td width="15%" align="center">'.$resultado['condicionfinal'].'</td></tr>';
+		}
+		$table.='</table>';
+        $this->tcpdf->writeHTML($table, true, 0, true, 0);
+		$this->tcpdf->lastPage();
+        //Close and output PDF document
+        $this->tcpdf->Output('ReporteHestia.pdf', 'I'); 
+	}
 	
 }
 ?>
