@@ -177,12 +177,12 @@
 		// CONFIGURANDO HEADER :D
         $this->tcpdf->SetKeywords('TCPDF, PDF, example, test, guide');
 		$this->tcpdf->SetHeaderData('', 0, 'UNIVERSIDAD NACIONAL JOSÉ FAUSTINO SÁNCHEZ CARRIÓN', 'UNIDAD DE COMEDOR UNIVERSITARIO');
-		$this->tcpdf->setHeaderFont(Array('', '', '16'));
+		$this->tcpdf->setHeaderFont(Array('courier', '', '12'));
 		$this->tcpdf->SetHeaderMargin(5);
-		$this->tcpdf->SetMargins(15, 30, 10);
+		$this->tcpdf->SetMargins(15, 25, 10);
 		// CONFIGURANDO PIE :D
 		date_default_timezone_set('Etc/GMT+5');
-		$this->tcpdf->SetFooterData('','','Reporte emitido por Hestia - '.date("d/m/Y H:i:s"));
+		$this->tcpdf->SetFooterData('','',' - Hestia');
         // set font
         //$this->tcpdf->SetFont('times', 'BI', 16);
         // add a page
@@ -190,18 +190,25 @@
         // print a line using Cell()
         $table = 'Resultados de la consulta: '.$parametro.'<br /><br />';
         
-        $table .= '<table border="1" align="center" style="font-size:28px;"><tr><td width="10%">DNI</td><td width="43%">APELLIDOS Y NOMBRES</td><td width="25%">CARRERA PROFESIONAL</td><td width="7%">CICLO</td><td width="15%">ESTADO</td></tr>';
+        $table .= '<table border="1" align="center" style="font-size:26px;"><tr bgcolor="#F7F8E0" ><td width="5%"></td><td width="10%">DNI</td><td width="40%">APELLIDOS Y NOMBRES</td><td width="25%">CARRERA PROFESIONAL</td><td width="7%">CICLO</td><td width="13%">ESTADO</td></tr>';
+		$count = 1;
 		foreach ($data as $resultado){ //usando los datos de mysql
-		$table .= '<tr>'.
-			'<td width="10%" align="center">'.$resultado['dni'].'</td>'.
-			'<td width="43%" align="center">'.$resultado['nombrescompletos'].'</td>'.
-			'<td width="25%" align="center">'.$resultado['nombrecarreraprofesional'].'</td>'.
-			'<td width="7%" align="center">'.cicloRomano($resultado['numciclo']).'</td>'.
-			'<td width="15%" align="center">'.$resultado['condicionfinal'].'</td></tr>';
+		if($count%2==0)$table .= '<tr bgcolor="#F7F8E0">';
+		else $table.='<tr>';
+		$table .=
+			'<td width="5%">'.$count.'</td>'.
+			'<td width="10%">'.$resultado['dni'].'</td>'.
+			'<td width="40%">'.$resultado['nombrescompletos'].'</td>'.
+			'<td width="25%">'.$resultado['nombrecarreraprofesional'].'</td>'.
+			'<td width="7%">'.cicloRomano($resultado['numciclo']).'</td>'.
+			'<td width="13%">'.$resultado['condicionfinal'].'</td></tr>';
+		$count++;
 		}
-		$table.='</table>';
+		$table.='</table><br /><br />Se han encontrado '.count($data).' Coincidencias';
+		
         $this->tcpdf->writeHTML($table, true, 0, true, 0);
 		$this->tcpdf->lastPage();
+		$this->tcpdf->writeHTML('Reporte emitido por Hestia : '.date("d/m/Y H:i:s"),true,0,true,0);
         //Close and output PDF document
         $this->tcpdf->Output('ReporteHestia.pdf', 'I'); 
 	}
