@@ -41,7 +41,7 @@
 						 	  		 				 array("data-id"=>"marcadoasistencia","nombreSubMenu"=>"Marcado de Asistencia","icon"=>"icon-chevron-right","href"=>"index.php/asistencia/gestion_asistencia/marcadoAsistencia"))),
 									array("nombreMenu"=>"Gestión de Beneficiados","padre"=>"true","id"=>"p_gestion_beneficiado","data-target"=>"gestion_beneficiado","icon"=>"asistencia_16x16.png",
 						 	  		"submenu"=>array(
-						 	  		 				 array("data-id"=>"registrobeneficiado","nombreSubMenu"=>"Registros de Beneficiados","icon"=>"icon-chevron-right","href"=>"index.php/beneficiado/gestion_beneficiado/registroBeneficiado")))
+						 	  		 				 array("data-id"=>"consultabeneficiado","nombreSubMenu"=>"Consulta de Beneficiados","icon"=>"icon-chevron-right","href"=>"index.php/beneficiado/gestion_beneficiado/consultaBeneficiado")))
 						);
 						foreach ($menu as $key => $value) 
 						{

@@ -196,7 +196,41 @@ function evento (ev)
 
     
     $("#btn_agregar_beneficiado").click(function(){
-    	$('#panel_trabajo').hide().load(server+"index.php/beneficiado/gestion_beneficiado/nuevoBeneficiado").fadeIn('normal');
+    	$('#panel_trabajo').hide().load(server+"index.php/beneficiado/gestion_beneficiado/nuevoBeneficiado").fadeIn('normal',function(){
+    		 var btn_nuevo=$("button[name='btn_nuevo']");
+    		 btn_nuevo.click(function(){
+    		 	console.log(btn_nuevo.text);
+    		 	if(sp_accion.html=="Cancelar"){
+    		 		btn_nuevo.html("Nuevo");
+		    		btn_nuevo.removeClass("btn-danger"); 
+		    		btn_nuevo.addClass('btn-primary');	
+			    	$("input[name='txt_apellido_paterno']").attr("disabled",true);
+			    	$("input[name='txt_apellido_materno']").attr("disabled",true);
+			    	$("input[name='txt_nombres_completos']").attr("disabled",true);
+			    	$("input[name='rbt_sexo']").attr("disabled",true);
+			    	$("input[name='txt_dni']").attr("disabled",true);
+			    	$("input[name='btn_nuevo']").attr("disabled",true);
+			    	$("input[name='txt_cod_univ']").attr("disabled",true);
+			    	$("input[name='txt_carr_prof']").attr("disabled",true);
+			    	$("input[name='txt_ciclo']").attr("disabled",true);
+    		 	}
+    		 	else{
+    		 		sp_accion.html("Cancelar");
+		    		btn_nuevo.removeClass("btn-primary"); 
+		    		btn_nuevo.addClass('btn-danger');	
+			    	$("input[name='txt_apellido_paterno']").attr("disabled",false);
+			    	$("input[name='txt_apellido_materno']").attr("disabled",false);
+			    	$("input[name='txt_nombres_completos']").attr("disabled",false);
+			    	$("input[name='rbt_sexo']").attr("disabled",false);
+			    	$("input[name='txt_dni']").attr("disabled",false);
+			    	$("input[name='btn_nuevo']").attr("disabled",false);
+			    	$("input[name='txt_cod_univ']").attr("disabled",false);
+			    	$("input[name='txt_carr_prof']").attr("disabled",false);
+			    	$("input[name='txt_ciclo']").attr("disabled",false);
+    		 	}
+    		
+	    });
+    	});
     	
     	$.getScript(server+"public/js/vendor/bootstrap/js/bootstrap-modal.js")
 		.done(function(script, textStatus) {				
@@ -222,6 +256,8 @@ function evento (ev)
 			}); 
 		});
     });
+    
+   
 }
 
  function actualizarReloj(){
@@ -234,3 +270,4 @@ function evento (ev)
 	    var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds;
 	   	$("#marcado_asistencia_hora").text(currentTimeString);   
     }
+    
