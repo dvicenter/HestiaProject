@@ -80,9 +80,10 @@ body{
 }
 .login{	
 	border-radius:5px;	
-	margin-top:5%;
+	margin-top:40px;
 	display: inline-block;	
 	width:25%;	
+	min-width:350px;
 	background-color: whitesmoke;	
 	box-shadow: 0 0 5px 5px #766c68;/* before: 474E4B*/	
 }
@@ -105,6 +106,7 @@ footer{
 
 @media only screen and (min-width: 35em) {
     /* Style adjustments for viewports that meet the condition */
+
 }
 
 

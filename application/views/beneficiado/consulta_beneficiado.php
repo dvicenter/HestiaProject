@@ -21,8 +21,8 @@
 			    <span class="caret"></span>
 			  </a>
 			  <ul style="top:initial" class="dropdown-menu">
-			    <li><a href="<?php echo base_url("index.php/beneficiado/gestion_beneficiado/exportarBeneficiado")?>">PDF</a></li>
-			    <li><a>Excel</a></li>
+			    <li><a href="<?php echo base_url("index.php/beneficiado/gestion_beneficiado/exportarBeneficiadoPDF")?>">PDF</a></li>
+			    <li><a href="<?php echo base_url("index.php/beneficiado/gestion_beneficiado/exportarBeneficiadoExcel")?>">Excel</a></li>
 			  </ul>
 			</div>	
 			

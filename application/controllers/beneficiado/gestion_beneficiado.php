@@ -10,11 +10,11 @@
 	{
 		
 	}
-	public function consultaBeneficiado()
+	public function registroBeneficiado()
 	{
 			$template['header'] = $this->load->view('plantilla/header','',true);
 			$template['nav'] = $this->load->view('plantilla/nav','',true);			
-			$template['content'] = $this->load->view('beneficiado/consulta_beneficiado','',true);			
+			$template['content'] = $this->load->view('beneficiado/registro_beneficiado','',true);			
 			$this->load->view('plantilla/plantilla', $template);
 	}
 	public function nuevoBeneficiado()
@@ -43,145 +43,92 @@
 			$this->output->set_content_type('json')->set_output(json_encode($data));	
 	}
 	
-	public function exportarBeneficiado()
-	{
-			$parametro=$this->input->get('txt_consulta_beneficiado',TRUE)."";
-			$tipo=$this->input->get('rbt_tipo_consulta',TRUE)."";
-			$this->load->model("beneficiado/gestion_beneficiado_model");
-			$data=$this->gestion_beneficiado_model->exportarBeneficiados('manrique',2);
-			$this->load->library('fpdf');
-			
-			/* COMIENZA */
-			
-			$this->fpdf->AddPage('P' , 'A4'); //mi formato de pagina 
-			$this->fpdf->SetFont('Arial','B',16);
-			$this->fpdf->Cell(80);
-			$this->fpdf->Image('http://4.bp.blogspot.com/_BSRFkkxuSEI/TDih0WqUGTI/AAAAAAAAGj4/fg0WTNspPxQ/s320/UNJFSC.png',10,10,-300,'PNG').
-			// Framed title
-			$title= utf8_decode("Universidad Nacional José Faustino Sánchez Carrión");
-		    $this->fpdf->Cell(30,10,$title,0,0,'C');
-		    $this->fpdf->Ln();
-			$this->fpdf->SetFont('Arial','B',12);
-			$this->fpdf->Cell(80);
-			$this->fpdf->Cell(30,10,"UNIVERSIDAD DE COMEDOR UNIVERSITARIO",0,0,'C');
-		    
-		    // Line break
-		    $this->fpdf->Ln();
-			$this->fpdf->SetFonT('Arial','',10); //mi fuente
-			$this->fpdf->Ln();
-			
-			//CABECERA TABLA
-			$this->fpdf->Cell(20,5,'DNI',1,0,'C'); 
-			$this->fpdf->Cell(80,5,'APELLIDOS Y NOMBRES',1,0,'C'); 
-			$this->fpdf->Cell(50,5,'CARRERA PROFESIONAL',1,0,'C'); 
-			$this->fpdf->Cell(20,5,'CICLO',1,0,'C'); 
-			$this->fpdf->Cell(25,5,utf8_decode('CONDICIÓN'),1,0,'C');
-			$this->fpdf->Ln(); // salto de linea		
-			
-			
-			foreach ($data as $resultado){ //usando los datos de mysql
-			$this->fpdf->Cell(20,5,$resultado['dni'],1,0,'C'); 
-			$this->fpdf->Cell(80,5,$resultado['nombrescompletos'],1,0,'L'); 
-			$this->fpdf->Cell(50,5,$resultado['nombrecarreraprofesional'],1,0,'C'); 
-			$this->fpdf->Cell(20,5,$resultado['numciclo'],1,0,'C'); 
-			$this->fpdf->Cell(25,5,$resultado['condicionfinal'],1,0,'C');
-			$this->fpdf->Ln(); // salto de linea		
-			}
-			$this->fpdf->SetY(270);
-		    // Select Arial italic 8
-		    $this->fpdf->SetFont('Arial','I',8);
-		    // Print centered page number
-		    date_default_timezone_set('Etc/GMT+5');
-			// fecha
-			$foot = utf8_decode("Reporte emitido por Hestia - Fecha de impresión:".date("Y-m-d H:i:s"));
-			
-		    //$this->fpdf->Cell(0,5,$foot,1,0,'C');
-			//
-			//$this->fpdf->Cell(0,5,'Pagina '.$this->fpdf->PageNo(),1,0,'R');
-			$this->fpdf->SetY(-15);
-		    //Arial italic 8
-    		$this->fpdf->SetFont('Arial','I',8);
-		    //Número de página
-		    $this->fpdf->Cell(0,10,'Page '.$this->fpdf->PageNo().'/{nb}',0,0,'C');
-			//finaliza y muestra en pantalla pdf
-			$this->fpdf->Output(); // si se deja Output() asi "solo" el archivo al guardarlo tiene el nombre doc.pdf y el parametro 'D' obliga a guardarlo , que era lo que yo necesitaba!!
-			
-	}
-
-	function Header()
-    {
-	    //Logo
-	    $this->Image("http://4.bp.blogspot.com/_BSRFkkxuSEI/TDih0WqUGTI/AAAAAAAAGj4/fg0WTNspPxQ/s320/UNJFSC.png" , 10 ,8, 35 , 38 , "JPG" ,"http://www.mipagina.com");
-	    //Arial bold 15
-	    $this->SetFont('Arial','B',15);
-	    //Movernos a la derecha
-	    $this->Cell(80);
-	    //Título
-	    $this->Cell(60,10,'Titulo del archivo',1,0,'C');
-	    //Salto de línea
-	    $this->Ln(20);
-	}
-   
-	   //Pie de página
-	function Footer()
-	{
-	    //Posición: a 1,5 cm del final
-	    $this->fpdf->SetY(-15);
-	    //Arial italic 8
-	    $this->fpdf->SetFont('Arial','I',8);
-	    //Número de página
-	   	$this->fpdf->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
-	}
-      //Tabla coloreada
-	function TablaColores($header)
-	{
-		//Colores, ancho de línea y fuente en negrita
-		$this->fpdf->SetFillColor(255,0,0);
-		$this->fpdf->SetTextColor(255);
-		$this->fpdf->SetDrawColor(128,0,0);
-		$this->fpdf->SetLineWidth(.3);
-		$this->fpdf->SetFont('Arial','B');
-		//Cabecera
-		for($i=0;$i<count($header);$i++)
-		$this->fpdf->Cell(40,7,$header[$i],1,0,'C',1);
-		$this->fpdf->Ln();
-		//Restauración de colores y fuentes
-		$this->fpdf->SetFillColor(224,235,255);
-		$this->fpdf->SetTextColor(0);
-		$this->fpdf->SetFont('');
-		//Datos
-		$fill=false;
-		$this->fpdf->Cell(40,6,"hola",'LR',0,'L',$fill);
-		$this->fpdf->Cell(40,6,"hola2",'LR',0,'L',$fill);
-		$this->fpdf->Cell(40,6,"hola3",'LR',0,'R',$fill);
-		$this->fpdf->Cell(40,6,"hola4",'LR',0,'R',$fill);
-		$this->fpdf->Ln();
-		$fill=!$fill;
-		$this->fpdf->Cell(40,6,"col",'LR',0,'L',$fill);
-		$this->fpdf->Cell(40,6,"col2",'LR',0,'L',$fill);
-		$this->fpdf->Cell(40,6,"col3",'LR',0,'R',$fill);
-		$this->fpdf->Cell(40,6,"col4",'LR',0,'R',$fill);
-		$fill=true;
-		$this->fpdf->Ln();
-		$this->fpdf->Cell(160,0,'','T');
-	}
-   public function exportarBeneficiado2()
-	{
-			$this->load->library('fpdf');
-			//$pdf=$this->fpdf->PDF();
-			//Títulos de las columnas
-			$header=array('Columna 1','Columna 2','Columna 3','Columna 4');
-			$this->fpdf->AliasNbPages();
-			//Primera página
-			$this->fpdf->AddPage();
-			$this->fpdf->SetY(65);
-			//$pdf->AddPage();
-			$this->TablaColores($header);
-			//Segunda página
-			$this->fpdf->AddPage();
-			$this->fpdf->SetY(65);
-			$this->fpdf->Output();			
-	}
 	
+    
+	public function exportarBeneficiadoPDF()
+	{
+		$this->load->library('tcpdf/tcpdf');
+		$this->load->helper('tcpdf_helper');
+		$parametro=$this->input->get('txt_consulta_beneficiado',TRUE)."";
+		$parametro = 'pa';
+		$tipo=$this->input->get('rbt_tipo_consulta',TRUE)."";
+		$tipo = 2;
+		$this->load->model("beneficiado/gestion_beneficiado_model");
+		$data=$this->gestion_beneficiado_model->exportarBeneficiados($parametro,$tipo);
+        // set document information
+        $this->tcpdf->SetSubject('TCPDF Tutorial');
+        $this->tcpdf->SetAuthor('Hestia');
+		// CONFIGURANDO HEADER :D
+        $this->tcpdf->SetKeywords('TCPDF, PDF, example, test, guide');
+		$this->tcpdf->SetHeaderData('', 0, 'UNIVERSIDAD NACIONAL JOSÉ FAUSTINO SÁNCHEZ CARRIÓN', 'UNIDAD DE COMEDOR UNIVERSITARIO');
+		$this->tcpdf->setHeaderFont(Array('courier', '', '12'));
+		$this->tcpdf->SetHeaderMargin(5);
+		$this->tcpdf->SetMargins(15, 25, 10);
+		// CONFIGURANDO PIE :D
+		date_default_timezone_set('Etc/GMT+5');
+		$this->tcpdf->SetFooterData('','',' - Hestia');
+        // set font
+        //$this->tcpdf->SetFont('times', 'BI', 16);
+        // add a page
+        $this->tcpdf->AddPage();
+        // print a line using Cell()
+        $table = 'Resultados de la consulta: '.$parametro.'<br /><br />';
+        
+        $table .= '<table border="1" align="center" style="font-size:26px;"><tr bgcolor="#F7F8E0" ><td width="5%"></td><td width="10%">DNI</td><td width="40%">APELLIDOS Y NOMBRES</td><td width="25%">CARRERA PROFESIONAL</td><td width="7%">CICLO</td><td width="13%">ESTADO</td></tr>';
+		$count = 1;
+		foreach ($data as $resultado){ //usando los datos de mysql
+		if($count%2==0)$table .= '<tr bgcolor="#F7F8E0">';
+		else $table.='<tr>';
+		$table .=
+			'<td width="5%">'.$count.'</td>'.
+			'<td width="10%">'.$resultado['dni'].'</td>'.
+			'<td width="40%">'.$resultado['nombrescompletos'].'</td>'.
+			'<td width="25%">'.$resultado['nombrecarreraprofesional'].'</td>'.
+			'<td width="7%">'.cicloRomano($resultado['numciclo']).'</td>'.
+			'<td width="13%">'.$resultado['condicionfinal'].'</td></tr>';
+		$count++;
+		}
+		$table.='</table><br /><br />Se han encontrado '.count($data).' Coincidencias';
+		
+        $this->tcpdf->writeHTML($table, true, 0, true, 0);
+		$this->tcpdf->lastPage();
+		$this->tcpdf->writeHTML('Reporte emitido por Hestia : '.date("d/m/Y H:i:s"),true,0,true,0);
+        //Close and output PDF document
+        $this->tcpdf->Output('ReporteHestia.pdf', 'I'); 
+     }
+	public function exportarBeneficiadoExcel(){
+		
+		header("Content-Type: application/vnd.ms-excel");
+		header("Expires: 0");
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		header("content-disposition: attachment;filename=Reportes.xls");
+		//LLama helper
+		$this->load->helper('tcpdf_helper');
+		$parametro=$this->input->get('txt_consulta_beneficiado',TRUE)."";
+		$parametro = 'pa';
+		$tipo=$this->input->get('rbt_tipo_consulta',TRUE)."";
+		$this->load->model("beneficiado/gestion_beneficiado_model");
+		$data=$this->gestion_beneficiado_model->exportarBeneficiados($parametro,2);
+		echo '<html lang="es">
+			  <head><meta charset="utf-8" /></head>
+			  <body>';
+		$count = 1;
+		$table = '<table CELLPADDING="1" CELLSPACING="1" border="1"><tr align="center" bgcolor="#F7F8E0" ><td></td><td>DNI</td><td>APELLIDOS Y NOMBRES</td><td>CARRERA PROFESIONAL</td><td>CICLO</td><td>ESTADO</td></tr>';
+		foreach ($data as $resultado){ //usando los datos de mysql
+		if($count%2==0)$table .= '<tr bgcolor="#F7F8E0" align="center">';
+		else $table.='<tr align="center">';
+		$table .=
+			'<td>'.$count.'</td>'.
+			'<td>'.$resultado['dni'].'</td>'.
+			'<td>'.$resultado['nombrescompletos'].'</td>'.
+			'<td>'.$resultado['nombrecarreraprofesional'].'</td>'.
+			'<td>'.cicloRomano($resultado['numciclo']).'</td>'.
+			'<td>'.$resultado['condicionfinal'].'</td></tr>';
+		$count++;
+		}
+		echo $table;
+		echo '</table>';
+		echo '</body></html>';
+	}   
 }
 ?>
