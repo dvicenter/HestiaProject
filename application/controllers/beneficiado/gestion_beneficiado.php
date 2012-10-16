@@ -55,28 +55,13 @@
 		$tipo = 2;
 		$this->load->model("beneficiado/gestion_beneficiado_model");
 		$data=$this->gestion_beneficiado_model->exportarBeneficiados($parametro,$tipo);
-        // set document information
-        $this->tcpdf->SetSubject('TCPDF Tutorial');
-        $this->tcpdf->SetAuthor('Hestia');
-		// CONFIGURANDO HEADER :D
-        $this->tcpdf->SetKeywords('TCPDF, PDF, example, test, guide');
-		$this->tcpdf->SetHeaderData('', 0, 'UNIVERSIDAD NACIONAL JOSÉ FAUSTINO SÁNCHEZ CARRIÓN', 'UNIDAD DE COMEDOR UNIVERSITARIO');
-		$this->tcpdf->setHeaderFont(Array('courier', '', '12'));
-		$this->tcpdf->SetHeaderMargin(5);
-		$this->tcpdf->SetMargins(15, 25, 10);
-		// CONFIGURANDO PIE :D
-		date_default_timezone_set('Etc/GMT+5');
-		$this->tcpdf->SetFooterData('','',' - Hestia');
-        // set font
-        //$this->tcpdf->SetFont('times', 'BI', 16);
-        // add a page
-        $this->tcpdf->AddPage();
-        // print a line using Cell()
+        headerPDF('UNIVERSIDAD NACIONAL JOSÉ FAUSTINO SÁNCHEZ CARRIÓN', 'UNIDAD DE COMEDOR UNIVERSITARIO');	
+		footerPDF(' Hestia');
+		$this->tcpdf->AddPage();
         $table = 'Resultados de la consulta: '.$parametro.'<br /><br />';
-        
         $table .= '<table border="1" align="center" style="font-size:26px;"><tr bgcolor="#F7F8E0" ><td width="5%"></td><td width="10%">DNI</td><td width="40%">APELLIDOS Y NOMBRES</td><td width="25%">CARRERA PROFESIONAL</td><td width="7%">CICLO</td><td width="13%">ESTADO</td></tr>';
 		$count = 1;
-		foreach ($data as $resultado){ //usando los datos de mysql
+		foreach ($data as $resultado){
 		if($count%2==0)$table .= '<tr bgcolor="#F7F8E0">';
 		else $table.='<tr>';
 		$table .=
@@ -89,29 +74,25 @@
 		$count++;
 		}
 		$table.='</table><br /><br />Se han encontrado '.count($data).' Coincidencias';
-		
         $this->tcpdf->writeHTML($table, true, 0, true, 0);
 		$this->tcpdf->lastPage();
 		$this->tcpdf->writeHTML('Reporte emitido por Hestia : '.date("d/m/Y H:i:s"),true,0,true,0);
-        //Close and output PDF document
         $this->tcpdf->Output('ReporteHestia.pdf', 'I'); 
      }
+
 	public function exportarBeneficiadoExcel(){
 		
 		header("Content-Type: application/vnd.ms-excel");
 		header("Expires: 0");
 		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 		header("content-disposition: attachment;filename=Reportes.xls");
-		//LLama helper
 		$this->load->helper('tcpdf_helper');
 		$parametro=$this->input->get('txt_consulta_beneficiado',TRUE)."";
 		$parametro = 'pa';
 		$tipo=$this->input->get('rbt_tipo_consulta',TRUE)."";
 		$this->load->model("beneficiado/gestion_beneficiado_model");
 		$data=$this->gestion_beneficiado_model->exportarBeneficiados($parametro,2);
-		echo '<html lang="es">
-			  <head><meta charset="utf-8" /></head>
-			  <body>';
+		iniciaExcel();
 		$count = 1;
 		$table = '<table CELLPADDING="1" CELLSPACING="1" border="1"><tr align="center" bgcolor="#F7F8E0" ><td></td><td>DNI</td><td>APELLIDOS Y NOMBRES</td><td>CARRERA PROFESIONAL</td><td>CICLO</td><td>ESTADO</td></tr>';
 		foreach ($data as $resultado){ //usando los datos de mysql
@@ -128,7 +109,7 @@
 		}
 		echo $table;
 		echo '</table>';
-		echo '</body></html>';
+		cierraExcel();
 	}   
 }
 ?>

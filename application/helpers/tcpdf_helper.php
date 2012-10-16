@@ -1,26 +1,24 @@
 <?php
 	
-	function headerPDF()
+	function headerPDF($pCabecera,$pSubCabecera)
 	{
 		$CI = &get_instance();
-		$image_file = K_PATH_IMAGES.'logo_example.jpg';
-        $this->Image($image_file, 10, 10, 15, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-        // Set font
-        $this->SetFont('helvetica', 'B', 20);
-        // Title
-        $this->Cell(0, 15, '<< TCPDF Example 003 >>', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+        $CI->tcpdf->SetSubject('Reporte Hestia');
+        $CI->tcpdf->SetAuthor('Hestia');
+        $CI->tcpdf->SetHeaderData('', 0, $pCabecera,$pSubCabecera);
+		$CI->tcpdf->setHeaderFont(Array('courier', '', '12'));
+		$CI->tcpdf->SetHeaderMargin(5);
+		$CI->tcpdf->SetMargins(15, 25, 10);
 	}
 	
 	
 
-	function footerPDF()
+	function footerPDF($pPie)
 	{
 		$CI = &get_instance();
 		$CI->tcpdf->SetY(-15);
-	    //Arial italic 8
-	    $CI->tcpdf->SetFont('','I',8);
-	    //Número de página
-	   	$CI->tcpdf->Cell(0,10,'Page '.$CI->tcpdf->PageNo().'/{nb}',0,0,'C');
+	    date_default_timezone_set('Etc/GMT+5');
+		$CI->tcpdf->SetFooterData('','',$pPie);
 	}
 	
 	function cicloRomano($ciclo){
