@@ -196,7 +196,7 @@ function evento (ev)
 
     
     $("#btn_agregar_beneficiado").click(function(){
-    	$('#panel_trabajo').hide().load(server+"index.php/beneficiado/gestion_beneficiado/nuevoBeneficiado").fadeIn('normal',function(){
+    	$('#panel_trabajo').hide().load(server+"index.php/beneficiado/gestion_beneficiado/registroBeneficiadoIndex").fadeIn('normal',function(){
     		 var btn_nuevo=$("button[name='btn_nuevo']");
     		 btn_nuevo.click(function(){
     		 	console.log(btn_nuevo.text);

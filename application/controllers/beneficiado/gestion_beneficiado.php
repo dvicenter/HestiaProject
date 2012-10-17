@@ -10,14 +10,14 @@
 	{
 		
 	}
-	public function registroBeneficiado()
+	public function consultaBeneficiadoIndex()
 	{
 			$template['header'] = $this->load->view('plantilla/header','',true);
 			$template['nav'] = $this->load->view('plantilla/nav','',true);			
-			$template['content'] = $this->load->view('beneficiado/registro_beneficiado','',true);			
+			$template['content'] = $this->load->view('beneficiado/consulta_beneficiado','',true);			
 			$this->load->view('plantilla/plantilla', $template);
 	}
-	public function nuevoBeneficiado()
+	public function registroBeneficiadoindex()
 	{		
 			 $this->load->view('beneficiado/nuevo_beneficiado');
 	}

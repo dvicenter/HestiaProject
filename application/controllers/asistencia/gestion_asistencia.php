@@ -10,7 +10,7 @@ class Gestion_asistencia extends CI_Controller {
 	{
 		
 	}
-	public function marcadoAsistencia()
+	public function marcadoAsistenciaIndex()
 	{
 			$template['header'] = $this->load->view('plantilla/header','',true);
 			$template['nav'] = $this->load->view('plantilla/nav','',true);			
