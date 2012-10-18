@@ -198,12 +198,18 @@ function evento (ev)
     $("#btn_agregar_beneficiado").click(function(){
     	$('#panel_trabajo').hide().load(server+"index.php/beneficiado/gestion_beneficiado/registroBeneficiadoIndex").fadeIn('normal',function(){
     		 var btn_nuevo=$("button[name='btn_nuevo']");
+    		 var lbl_accion=$("i[name='lbl_accion']");
+    		 var icon_accion=$("i[name='icon_accion']");
     		 btn_nuevo.click(function(){
-    		 	console.log(btn_nuevo.text);
-    		 	if(sp_accion.html=="Cancelar"){
-    		 		btn_nuevo.html("Nuevo");
+    		 	
+    		 	if(lbl_accion.html()=="Cancelar"){
+    		 		lbl_accion.html("Nuevo");
 		    		btn_nuevo.removeClass("btn-danger"); 
 		    		btn_nuevo.addClass('btn-primary');	
+		    		icon_accion.removeClass('icon-plus-sign');
+		    		icon_accion.removeClass('icon-white');
+		    		icon_accion.addClass('icon-ban-circle');	
+		    		icon_accion.addClass('icon-white');
 			    	$("input[name='txt_apellido_paterno']").attr("disabled",true);
 			    	$("input[name='txt_apellido_materno']").attr("disabled",true);
 			    	$("input[name='txt_nombres_completos']").attr("disabled",true);
@@ -215,9 +221,13 @@ function evento (ev)
 			    	$("input[name='txt_ciclo']").attr("disabled",true);
     		 	}
     		 	else{
-    		 		sp_accion.html("Cancelar");
+    		 		lbl_accion.html("Cancelar");
 		    		btn_nuevo.removeClass("btn-primary"); 
 		    		btn_nuevo.addClass('btn-danger');	
+		    		icon_accion.removeClass('icon-ban-circle');
+		    		icon_accion.removeClass('icon-white');
+		    		icon_accion.addClass('icon-ban-circle');
+		    		icon_accion.addClass('icon-white');	
 			    	$("input[name='txt_apellido_paterno']").attr("disabled",false);
 			    	$("input[name='txt_apellido_materno']").attr("disabled",false);
 			    	$("input[name='txt_nombres_completos']").attr("disabled",false);

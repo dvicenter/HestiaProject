@@ -8,7 +8,7 @@
 			  		<input type="radio" name="rbt_tipo_consulta" value="2" checked="true">Apellidos y Nombres
 				</label>
 				<div id="ffb2"></div>	
-				<button name="btn_nuevo" class="btn btn-primary">Nuevo</button>
+				<button name="btn_nuevo" class="btn btn-primary"><i name="icon_accion" class="icon-plus-sign icon-white"></i><i name="lbl_accion">Nuevo</i></button>
 				
 				<div class="input-prepend">
 				<div class="div_form_beneficiado">

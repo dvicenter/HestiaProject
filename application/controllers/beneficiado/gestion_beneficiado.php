@@ -42,9 +42,6 @@
 			$data=$this->gestion_beneficiado_model->consultarBeneficiadosFiltro($parametro,$tipo,$inicio,$tamanio);
 			$this->output->set_content_type('json')->set_output(json_encode($data));	
 	}
-	
-	
-    
 	public function exportarBeneficiadoPDF()
 	{
 		$this->load->library('tcpdf/tcpdf');
