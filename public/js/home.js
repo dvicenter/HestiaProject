@@ -205,10 +205,10 @@ function evento (ev)
     		 	if(lbl_accion.html()=="Cancelar"){
     		 		lbl_accion.html("Nuevo");
 		    		btn_nuevo.removeClass("btn-danger"); 
-		    		btn_nuevo.addClass('btn-primary');	
-		    		icon_accion.removeClass('icon-plus-sign');
+		    		btn_nuevo.addClass('btn-primary');			    		
+		    		icon_accion.removeClass('icon-ban-circle');	
 		    		icon_accion.removeClass('icon-white');
-		    		icon_accion.addClass('icon-ban-circle');	
+		    		icon_accion.addClass('icon-plus-sign');
 		    		icon_accion.addClass('icon-white');
 			    	$("input[name='txt_apellido_paterno']").attr("disabled",true);
 			    	$("input[name='txt_apellido_materno']").attr("disabled",true);
@@ -223,11 +223,11 @@ function evento (ev)
     		 	else{
     		 		lbl_accion.html("Cancelar");
 		    		btn_nuevo.removeClass("btn-primary"); 
-		    		btn_nuevo.addClass('btn-danger');	
-		    		icon_accion.removeClass('icon-ban-circle');
-		    		icon_accion.removeClass('icon-white');
+		    		btn_nuevo.addClass('btn-danger');			    		
+		    		icon_accion.removeClass('icon-plus-sign');
+		    		icon_accion.removeClass('icon-white');	
 		    		icon_accion.addClass('icon-ban-circle');
-		    		icon_accion.addClass('icon-white');	
+		    		icon_accion.addClass('icon-white');
 			    	$("input[name='txt_apellido_paterno']").attr("disabled",false);
 			    	$("input[name='txt_apellido_materno']").attr("disabled",false);
 			    	$("input[name='txt_nombres_completos']").attr("disabled",false);
