@@ -19,7 +19,7 @@ class Login_model extends CI_Model {
 			$this->session->set_userdata('IdPersona',$data[0]->IdPersona);
 			$this->session->set_userdata('IdCentroAtencion',$data[0]->IdCentroAtencion);
 			// Consulta de datos de persona
-		  	$this->db->select('ApellidoPaterno,ApellidoMaterno,NombresCompleto');
+		  	$this->db->select('ApellidoPaterno,ApellidoMaterno,Nombres');
 			$this->db->where('IdPersona',$data[0]->IdPersona);
 			$sqlPersona = $this->db->get('persona');
 			$dataPersona= $sqlPersona->result();
