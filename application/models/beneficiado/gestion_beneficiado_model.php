@@ -9,7 +9,7 @@ class Gestion_beneficiado_model extends CI_Model {
 	 function consultarBeneficiadosFiltro($parametro,$tipo,$inicio,$tamanio)
     {
 
-	    	$this->db->select('DNI,NombresCompletos');				
+	    	$this->db->select('IdPersona,NombresCompletos');				
 	    	$this->db->from('beneficiado');
 			
 		

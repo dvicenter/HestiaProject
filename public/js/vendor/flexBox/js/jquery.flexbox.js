@@ -59,6 +59,7 @@
         var $hdn = $('<input type="hidden"/>')
             .attr('id', $div.attr('id') + '_hidden')
             .attr('name', $div.attr('id'))
+            .attr('data-values',"{}")
             .val(o.initialValue)
             .appendTo($div);
         
@@ -79,7 +80,7 @@
                 $(this).removeClass('watermark');
             })
             .blur(function(e) {
-				if (this.value === '') $hdn.val('');
+				if (this.value === '') {$hdn.val(''); $hdn.val("data-values","{}")};
                 setTimeout(function() { if (!$input.data('active')) hideResults(); }, 200);
             })
             .keydown(processKeyDown);
@@ -545,6 +546,7 @@
                     if (q.length > 0 && match.toLowerCase().indexOf(q.toLowerCase()) === 0) {
                         $input.attr('pq', q); // pq == previous query
 						$hdn.val(data[o.hiddenValue]);
+						$hdn.attr('data-values',JSON.stringify(data));
                         $input.val(data[o.displayValue]);
                         selectedMatch = selectRange(q.length, $input.val().length);
                     }
@@ -555,6 +557,7 @@
                 $row = $('<div></div>')
                     .attr('id', data[o.hiddenValue])
                     .attr('val', data[o.displayValue])
+                    .attr('data-values',JSON.stringify(data))
                     .addClass('row')
                     .html(result)
                     .appendTo($content);
@@ -629,7 +632,6 @@
                 alert('Invalid JSON property ' + ex + ' found when trying to apply resultTemplate or paging.summaryTemplate.\nPlease check your spelling and try again.');
             }
         };
-
         function hideResults() {
             $input.data('active', false); // for input blur
             $div.css('z-index', 0);
@@ -653,6 +655,7 @@
 
             if ($curr) {
 				$hdn.val($curr.attr('id'));
+				$hdn.attr("data-values",$curr.attr('data-values'));
                 $input.val($curr.attr('val')).focus();
                 hideResults();
 

@@ -250,13 +250,21 @@ function evento (ev)
 		.done(function(script, textStatus) {							
 				$('#ffb2').flexbox(server+"index.php/beneficiado/gestion_beneficiado/consultarBeneficiadoFiltro",{
 					 showResults: true,  
-					 watermark: 'Ingrese los datos',
+					 watermark: 'Ingrese los datos a consultar',
 					 displayValue:"NombresCompletos",
-					 hiddenValue:"DNI",
+					 hiddenValue:"IdPersona",
 					 width:400,
 					 resultTemplate:'{NombresCompletos}',
 					 showArrow:false,
-					 
+					 onSelect: function() { 
+					 	var data_values=jQuery.parseJSON($("#ffb2_hidden")[0].getAttribute("data-values"));
+					 	if(data_values!="{}"){
+					 		console.log(data_values);	
+					 	}
+					 	
+						$("input[name='txt_apellido_paterno']").val(data_values["NombresCompletos"]);
+						 
+					 },			 
 					 paging: {  
 			        	pageSize: 5,
 			        	summaryTemplate: 'Mostrando {start}-{end} de {total} resultados'   
