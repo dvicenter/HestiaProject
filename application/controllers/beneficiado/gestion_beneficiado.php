@@ -10,16 +10,20 @@
 	{
 		
 	}
-	public function consultaBeneficiadoIndex()
+	public function consultaBeneficiado()
 	{
 			$template['header'] = $this->load->view('plantilla/header','',true);
 			$template['nav'] = $this->load->view('plantilla/nav','',true);			
 			$template['content'] = $this->load->view('beneficiado/consulta_beneficiado','',true);			
 			$this->load->view('plantilla/plantilla', $template);
 	}
-	public function registroBeneficiadoindex()
+	public function registroBeneficiado()
 	{		
-			 $this->load->view('beneficiado/nuevo_beneficiado');
+		$template['header'] = $this->load->view('plantilla/header','',true);
+			$template['nav'] = $this->load->view('plantilla/nav','',true);			
+			$template['content'] = $this->load->view('beneficiado/registro_beneficiado','',true);			
+			$this->load->view('plantilla/plantilla', $template);
+			 
 	}
 	public function consultarBeneficiado()
 	{

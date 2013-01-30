@@ -2,26 +2,30 @@
    Estilo Home
    ================*/
 @font-face {
-	font-family: "Open-Sans";
+	font-family: "AnnieUseYourTelescope";
 	font-style: normal;
 	font-weight: normal;
 	src: url("fonts/AnnieUseYourTelescope.ttf");
 }
 @font-face {
-	font-family: "Open-Sans2";
+	font-family: "OpenSans-Regular";
 	font-style: normal;
 	font-weight: normal;
-	src: url("fonts/Pompiere-Regular.ttf");
+	src: url("fonts/OpenSans-Regular.ttf");
+}
+.inline{
+	display: inline-block;
+}
+legend{
+	color: #BE4730;
 }
 html{
 	height: 100%;
 }
 header{
-	/*background: white;*/
+	background: white;
 	text-align: center;	
-	/*border-bottom-style: dotted;
-	border-color:#474E4B;*/
-	padding:0.5%;
+	padding:15px;
 	margin-bottom:10px;
 }
 header img{
@@ -36,7 +40,7 @@ header h1{
 	color:#FF9900;
 	margin:0;
 	display: inline-block;
-	font-family: 'Open-Sans';
+	font-family: 'AnnieUseYourTelescope';
 	
 }
 header p{
@@ -48,20 +52,21 @@ header p{
 	font-size: 1.2em;
 }
 body{
-	font-family: 'Calibri';	
-	/*background-color: #1B1B1B;
-	background-size: 20px 20px*/
-	background: url(../img/bg_login.jpg) repeat-x #1B1B1B;
+	font-family: "OpenSans-Regular";
+	font-size: 14px;
 }
 nav{
 	border-radius:5px;
 	width:auto;
-	margin-top:3%;
-	margin-left:1%;
+	margin-top: 10px;
+	margin-left: 5px;
 	background-color: whitesmoke;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	border: 1px solid orange;	
 
+}
+.seccion_principal{
+	background: #1B1B1B;
 }
 .active_sub_menu a:hover{
 	text-decoration:none;
@@ -187,7 +192,7 @@ border-left: 1px solid #F3EAD9;
 	width:74%;
 	border:1px solid orange;
 	min-height: 520px;
-	margin:1% 0.5% 1% 0;
+	margin: 10px 2.5px;
 	border-radius: 5px;
 	
 }
@@ -195,12 +200,31 @@ border-left: 1px solid #F3EAD9;
 	display:inline-block;
 	width:22%;
 	vertical-align: top;
-	margin:1%;	
+	margin: 10px 2.5px;
 }
 .panel_trabajo{
 	width:90%;
-	margin :2% auto;
+	margin :10px auto;
 	
+}
+.form{
+	position: relative;
+	z-index: 0;
+}
+.form legend p{
+	margin: 0;
+}
+
+.form fieldset{
+	position: relative;
+	z-index: 2;
+	background-color: whitesmoke;
+}
+.buttons{
+	z-index: 1;
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 
 /* ================
@@ -396,10 +420,10 @@ color: black;
  .content{
  	font-size: 14px;
  }
- #ffb2{
+ #txt_busqueda_persona{
  	display:inline-block;
  	vertical-align: middle;
-	margin-left: 2%;
+	
  }
  .div_form_beneficiado{
  	display: block;
@@ -430,12 +454,23 @@ color: black;
  .cien_div_form_beneficiado input{
  	width:91%;
  }
- .icon-birrete{
- 	background-image: url("../img/birrete_16x16.png");
- 	background-position: 0;
+ #lbl_tipo_consulta_ap{
+ 	width:140px;
  }
 .radio input[name="rbt_sexo"]{
  	width:auto;
+ }
+ div[name="busqueda"]{
+ 	margin-bottom: 20px;
+ }
+.fila_datos{
+ 	margin-top:10px;
+ }
+ .foto_persona{
+ 	height: 280px;
+ }
+ .etiqueta{
+ 	color:rgb(0, 45, 126);
  }
 /* ==========================================================================
    Para media query.

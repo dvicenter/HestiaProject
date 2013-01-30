@@ -1,4 +1,8 @@
-<div id="panel_trabajo" class="panel_trabajo">	
+ <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/jquery.dataTables.css")?>">
+ <link rel="stylesheet" href="<?php echo base_url("public/css/jquery/jquery-ui-1.8.23.custom.css")?>">
+ <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/jquery.dataTables_themeroller.css")?>">
+ <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/demo_table.css")?>">
+
 	<div class="busqueda_registro_beneficiado">
 	
 			<fieldset>
@@ -34,12 +38,7 @@
 		 <button class="btn btn-small" type="button"> <i class="icon-minus-sign icon-black"></i>Deshabilitar Registro</button>
 	</div>	
 	<div class="tabla_registro_beneficiado">
-	</div>	
-	
-</div>
+	</div>
  <script src="<?php echo base_url("public/js/vendor/datatable/js/jquery.dataTables.js")?>"></script>
- <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/jquery.dataTables.css")?>">
- <link rel="stylesheet" href="<?php echo base_url("public/css/jquery/jquery-ui-1.8.23.custom.css")?>">
- <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/jquery.dataTables_themeroller.css")?>">
- <link rel="stylesheet" href="<?php echo base_url("public/js/vendor/datatable/css/demo_table.css")?>">
+ <script src="<?php echo base_url("public/js/beneficiado/consulta_beneficiado.js")?>"></script>
  

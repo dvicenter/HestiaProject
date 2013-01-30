@@ -17,7 +17,13 @@
 			$inicio=$this->input->get('p',TRUE)."";
 			$tamanio=$this->input->get('s',TRUE)."";
 			$this->load->model("persona/gestion_persona_model");
-			$data=$this->gestion_persona_model->consultarPersonaFiltro($parametro,$tipo,$inicio,$tamanio);
+			$data=$this->gestion_persona_model->consultarPersonaPorFiltro($parametro,$tipo,$inicio-1,$tamanio);
+			$this->output->set_content_type('json')->set_output(json_encode($data));	
+	}
+	function listarCarreraProfesional()
+	{
+			$this->load->model("persona/gestion_persona_model");
+			$data=$this->gestion_persona_model->listarCarreraProfesional();
 			$this->output->set_content_type('json')->set_output(json_encode($data));	
 	}
 }

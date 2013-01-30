@@ -1,8 +1,7 @@
-$(document).on("ready", evento);
-var oTable;
-	
-
-function evento (ev)
+$(document).on("ready", readyHome);
+var oTable
+var server="http://localhost:81/HestiaProject/";
+function readyHome (ev)
 {
 	
 	$.ajaxSetup({
@@ -14,17 +13,10 @@ function evento (ev)
    /**
     *  Script del Nav
     */
-   var server="http://localhost:81/HestiaProject/";
    var win_location=window.location+"";
    var id = win_location.match(/\/([^\/]+)[\/]?$/);   
    
-   var offset = 10;
-
-        // Our scroll target : the top position of the
-        // section that has the id referenced by our href.
-        var target = $("#mod_panel").offset().top - offset;
-		console.log(target);
-        // The magic...smooth scrollin' goodness.
+        var target = $("#mod_panel").offset().top;
         $('html, body').animate({scrollTop:target}, 500);
 	   
    
@@ -51,231 +43,9 @@ function evento (ev)
    		$('.nav-header-active').removeClass('nav-header-active');
    		$(this).addClass('nav-header-active');
    });
-   /**
-    * Fin Script Nav 
-    */
-   
-   /**
-    *Script de marcado de asistencia 
-    */
-    var nombreMeses=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre']; 
-   	var currentTime = new Date();
-	var month = currentTime.getMonth();
-	var day = currentTime.getDate();
-	var year = currentTime.getFullYear();	
-    $("#marcado_asistencia_fecha").text("Huacho,"+day+" de "+nombreMeses[month]+" del "+year);
-   
-   // Actualizar Reloj   
-	actualizarReloj();
-    setInterval('actualizarReloj()', 1000 );   
-    
-    /**
-     *Evento  de submit para marcado de asistencia 
-     */
-    $('#marcado_asistencia_form').submit(function(e) {
-       
-	   $.ajax({
-			  url: $(this).attr('action'),
-			  type: "POST",
-			  data: $(this).serialize(),
-			  dataType: "json",
-			  success:function(data){
-			  	$("p[name='mensaje']").text(data.mensaje);
-			  	$("#codigo_consultar").val("");
-			  	if(data.idError==0 || data.idError==2)
-			  	{
-			  		if(data.idError==2)
-			  		{
-			  			$("#imagen_mensaje").attr("src",server+"public/img/error_64x64.png");
-			  			$("p[name='mensaje']").css("color","#BE4730");
-			  		}
-			  		else
-			  		{
-			  			$("#imagen_mensaje").attr("src",server+"public/img/check_64x64.png");
-			  			$("p[name='mensaje']").css("color","#51A351");
-			  		}
-			  		$("p[name='dni']").text(data.dni);				  	
-				  	$("p[name='tipo_atendido']").text(data.tipoAtendido);
-				  	$("p[name='nombres_atendido']").text(data.nombresCompletos);
-				  	$("p[name='carrera_atendido']").text(data.carreraProfesional+"-"+ciclos[data.numCiclo-1]);	
-			  	}
-			  	else{
-			  		if(data.idError==1)
-				  	{
-				  		$("#imagen_mensaje").attr("src",server+"public/img/error_64x64.png");
-			  			$("p[name='mensaje']").css("color","#BE4730");
-				  		$("p[name='dni']").text("");				  	
-					  	$("p[name='tipo_atendido']").text("");
-					  	$("p[name='nombres_atendido']").text("");
-					  	$("p[name='carrera_atendido']").text("");	
-				  	}
-			  	}
-			  	
-			  }
-			  
-			}).done(function(data){ 
-				console.log("Query Marcado de Asistencia hecha");
-			});	 
-			return false; 
-	});
-	/**
-	 *Fin script Marcado Asistencia 
-	 */
-	$('.tabla_registro_beneficiado').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="tabla"></table>' );
-	oTable=$('#tabla').dataTable( {
-		"bFilter": false,
-        "bSort": false,
-        "bLengthChange": false,		
-		"oLanguage": {
-            "sLengthMenu": "Mostrar _MENU_ records por página",
-            "sZeroRecords": "No hay registros",
-            "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
-            "sProcessing":"Procesando",
-            "oPaginate": {
-            	'sNext':"Siguiente",
-            	'sFirst':"Primero",
-            	'sLast':"Último",
-            	'sPrevious':"Atrás"
-            }
-       },
-		"bJQueryUI": true,
-        "sPaginationType": "full_numbers",
-        "aoColumns": [
-            { "sTitle": "DNI", "mDataProp":'DNI' },
-            { "sTitle": "Apellidos y Nombres", "mDataProp":'NombresCompletos' },
-            { "sTitle": "Escuela" , "mDataProp":'NombreCarreraProfesional'},
-            { "sTitle": "Ciclo" , "mDataProp":'NumCiclo'},
-            { "sTitle": "Estado" , "mDataProp":'CondicionFinal'}
-         ],
-        "bProcessing": true,
-		"bServerSide": true,
-		"iDisplayLength": 15,
-		"sAjaxSource": server+"index.php/beneficiado/gestion_beneficiado/consultarBeneficiado",
-		"fnServerData": function ( sSource, aoData, fnCallback ) {
-			aoData.push(
-				  {
-				   'name':"txt_consulta_beneficiado",
-				   'value':$("input[name='txt_consulta_beneficiado']").val()
-				  });
-			aoData.push(
-				   {
-				 	'name':"rbt_tipo_consulta",
-				 	'value':$("input:radio[name='rbt_tipo_consulta']:checked").val()
-				  });
-			$.getJSON( sSource, aoData, function (json) { 
-				fnCallback(json);
-				
-			} );
-    	}
-    });
-    $("#tabla tbody tr").click( function( e ) {
-        if ( $(this).hasClass('row_selected') ) {
-            $(this).removeClass('row_selected');
-        }
-        else {
-            oTable.$('tr.row_selected').removeClass('row_selected');
-            $(this).addClass('row_selected');
-        }
-    });
-    $("#consultar_beneficiado").submit(function(e){
-    	
-		oTable.fnDraw();
-		return false;
-    });
-    
-    $("#form_beneficiado").on("show", function() {    // wire up the OK button to dismiss the modal when shown
-	    $("#btn_cancelar_form_beneficiado").on("click", function(e) {
-	        $("#form_beneficiado").modal('hide');     // dismiss the dialog
-	    });
-	});
-	
-	$("#form_beneficiado").on("hide", function() {    // remove the event listeners when the dialog is dismissed
-	    $("#btn_cancelar_form_beneficiado").off("click");
-	});
 
-    
-    $("#btn_agregar_beneficiado").click(function(){
-    	$('#panel_trabajo').hide().load(server+"index.php/beneficiado/gestion_beneficiado/registroBeneficiadoIndex").fadeIn('normal',function(){
-    		 var btn_nuevo=$("button[name='btn_nuevo']");
-    		 var lbl_accion=$("i[name='lbl_accion']");
-    		 var icon_accion=$("i[name='icon_accion']");
-    		 btn_nuevo.click(function(){
-    		 	
-    		 	if(lbl_accion.html()=="Cancelar"){
-    		 		lbl_accion.html("Nuevo");
-		    		btn_nuevo.removeClass("btn-danger"); 
-		    		btn_nuevo.addClass('btn-primary');			    		
-		    		icon_accion.removeClass('icon-ban-circle');	
-		    		icon_accion.removeClass('icon-white');
-		    		icon_accion.addClass('icon-plus-sign');
-		    		icon_accion.addClass('icon-white');
-			    	$("input[name='txt_apellido_paterno']").attr("disabled",true);
-			    	$("input[name='txt_apellido_materno']").attr("disabled",true);
-			    	$("input[name='txt_nombres_completos']").attr("disabled",true);
-			    	$("input[name='rbt_sexo']").attr("disabled",true);
-			    	$("input[name='txt_dni']").attr("disabled",true);
-			    	$("input[name='btn_nuevo']").attr("disabled",true);
-			    	$("input[name='txt_cod_univ']").attr("disabled",true);
-			    	$("input[name='txt_carr_prof']").attr("disabled",true);
-			    	$("input[name='txt_ciclo']").attr("disabled",true);
-    		 	}
-    		 	else{
-    		 		lbl_accion.html("Cancelar");
-		    		btn_nuevo.removeClass("btn-primary"); 
-		    		btn_nuevo.addClass('btn-danger');			    		
-		    		icon_accion.removeClass('icon-plus-sign');
-		    		icon_accion.removeClass('icon-white');	
-		    		icon_accion.addClass('icon-ban-circle');
-		    		icon_accion.addClass('icon-white');
-			    	$("input[name='txt_apellido_paterno']").attr("disabled",false);
-			    	$("input[name='txt_apellido_materno']").attr("disabled",false);
-			    	$("input[name='txt_nombres_completos']").attr("disabled",false);
-			    	$("input[name='rbt_sexo']").attr("disabled",false);
-			    	$("input[name='txt_dni']").attr("disabled",false);
-			    	$("input[name='btn_nuevo']").attr("disabled",false);
-			    	$("input[name='txt_cod_univ']").attr("disabled",false);
-			    	$("input[name='txt_carr_prof']").attr("disabled",false);
-			    	$("input[name='txt_ciclo']").attr("disabled",false);
-    		 	}
-    		
-	    });
-    	});
-    	
-    	$.getScript(server+"public/js/vendor/bootstrap/js/bootstrap-modal.js")
-		.done(function(script, textStatus) {				
-		$.getScript(server+"public/js/vendor/bootstrap/js/bootbox.min.js")			
-		.done(function(script, textStatus) {
-		$.getScript(server+"public/js/vendor/flexBox/js/jquery.flexbox.js")
-		.done(function(script, textStatus) {							
-				$('#ffb2').flexbox(server+"index.php/beneficiado/gestion_beneficiado/consultarBeneficiadoFiltro",{
-					 showResults: true,  
-					 watermark: 'Ingrese los datos a consultar',
-					 displayValue:"NombresCompletos",
-					 hiddenValue:"IdPersona",
-					 width:400,
-					 resultTemplate:'{NombresCompletos}',
-					 showArrow:false,
-					 onSelect: function() { 
-					 	var data_values=jQuery.parseJSON($("#ffb2_hidden")[0].getAttribute("data-values"));
-					 	if(data_values!="{}"){
-					 		console.log(data_values);	
-					 	}
-					 	
-						$("input[name='txt_apellido_paterno']").val(data_values["NombresCompletos"]);
-						 
-					 },			 
-					 paging: {  
-			        	pageSize: 5,
-			        	summaryTemplate: 'Mostrando {start}-{end} de {total} resultados'   
-			    	}});
-				
-				});  	
-			}); 
-		});
-    });
-    
-   
+
+
 }
 
  function actualizarReloj(){

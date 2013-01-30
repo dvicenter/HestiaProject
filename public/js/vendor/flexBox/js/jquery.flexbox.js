@@ -133,7 +133,8 @@
         // In FF, the outerHeight() will not pick up the correct input field padding
         var inputPad = $input.outerHeight() - $input.height() - 2;
         var inputWidth = $input.width();
-        var top = $("#ffb2_input").height()+2;
+        var id_m=$div.attr('id');
+        var top = $("#"+id_m+"_input").height()+2;
 		
         if (inputPad === 0) {
             inputWidth += 4;
@@ -143,10 +144,9 @@
             inputWidth += inputPad;
             top += inputPad;
         }
-		
         var $ctr = $('<div></div>')
             .attr('id', $div.attr('id') + '_ctr')
-            .css('width', inputWidth + arrowWidth)
+            .css('width', inputWidth + arrowWidth+4)
             .css('top', top)
             .css('left', 0)
             .addClass(o.containerClass)

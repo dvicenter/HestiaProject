@@ -38,10 +38,11 @@
 						$menu=array(
 						 			array("nombreMenu"=>"Gestión de Asistencia","padre"=>"true","id"=>"p_gestion_asistencia","data-target"=>"gestion_asistencia","icon"=>"asistencia_16x16.png",
 						 	  		"submenu"=>array(
-						 	  		 				 array("data-id"=>"marcadoAsistencia","nombreSubMenu"=>"Marcado de Asistencia","icon"=>"icon-chevron-right","href"=>"index.php/asistencia/gestion_asistencia/marcadoAsistenciaIndex"))),
+						 	  		 				 array("data-id"=>"marcadoasistencia","nombreSubMenu"=>"Marcado de Asistencia","icon"=>"icon-chevron-right","href"=>"index.php/asistencia/gestion_asistencia/marcadoAsistenci"))),
 									array("nombreMenu"=>"Gestión de Beneficiados","padre"=>"true","id"=>"p_gestion_beneficiado","data-target"=>"gestion_beneficiado","icon"=>"asistencia_16x16.png",
 						 	  		"submenu"=>array(
-						 	  		 				 array("data-id"=>"consultaBeneficiado","nombreSubMenu"=>"Consulta de Beneficiados","icon"=>"icon-chevron-right","href"=>"index.php/beneficiado/gestion_beneficiado/consultaBeneficiadoIndex")))
+						 	  		 				 array("data-id"=>"consultabeneficiado","nombreSubMenu"=>"Consulta de Beneficiados","icon"=>"icon-chevron-right","href"=>"index.php/beneficiado/gestion_beneficiado/consultaBeneficiado"),
+						 	  		 				 array("data-id"=>"registrobeneficiado","nombreSubMenu"=>"Registro de Beneficiados","icon"=>"icon-chevron-right","href"=>"index.php/beneficiado/gestion_beneficiado/registroBeneficiado")))
 						);
 						foreach ($menu as $key => $value) 
 						{

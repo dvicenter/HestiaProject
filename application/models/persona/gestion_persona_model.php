@@ -14,10 +14,11 @@ class Gestion_persona_model extends CI_Model {
 	    	ApellidoPaterno,
 	    	ApellidoMaterno,
 	    	Nombres,
+	    	concat(ApellidoPaterno," ",ApellidoMaterno," ",Nombres) as NombresCompletos,
 	    	Sexo,
 	    	DNI,
 	    	CodigoUniversitario,
-	    	FechaNacimiento,
+	    	date_format(FechaNacimiento,"%d/%m/%Y") as FechaNacimiento,
 	    	CiudadProcedencia,
 	    	TelefonoFijo,
 	    	Celular1,
@@ -25,7 +26,7 @@ class Gestion_persona_model extends CI_Model {
 	    	CorreoElectronicoPersonal,
 	    	CorreoElectronicoInstitucional,
 	    	NumCiclo,
-	    	IdCarreraProfesional'
+	    	IdCarreraProfesional',false
 			);				
 	    	$this->db->from('Persona');
 			
@@ -37,7 +38,7 @@ class Gestion_persona_model extends CI_Model {
 			}
 			else 
 			{
-			$this->db->like('NombresCompletos', $parametro,'after');
+			$this->db->like('concat(ApellidoPaterno," ",ApellidoMaterno," ",Nombres)',$parametro,'after');
 			}
 			
 			$sqlBeneficiado= $this->db->get();
@@ -50,22 +51,21 @@ class Gestion_persona_model extends CI_Model {
 						"total" => 0,						
 						"results" => array()
 					);
-			if($sqlBeneficiado->num_rows()!=0)
-			{
-						
+			if($rowcount!=0)
+			{						
 						foreach ($dataBeneficiado as $value) 
 						{
 							$lista_coincidencias[]=$value;
 						}			
 						$this->db->select('count(*) as total');		
-				    	$this->db->from('beneficiado');
+				    	$this->db->from('persona');
 						if($tipo==1)
 						{
 			    			$this->db->like('DNI',$parametro,'after');
 						}
 						else 
 						{
-							$this->db->like('NombresCompletos', $parametro,'after');
+							$this->db->like('concat(ApellidoPaterno," ",ApellidoMaterno," ",Nombres)', $parametro,'after');
 						}
 						$sqlTotal= $this->db->get();
 					    $dataTotal = $sqlTotal->result();
@@ -76,6 +76,34 @@ class Gestion_persona_model extends CI_Model {
 				
 			}
 			return $output ;
+    }
+    function listarCarreraProfesional(){
+    	$this->db->select("carrera_profesional.IdFacultad,facultad.NombreFacultad");
+    	$this->db->from("carrera_profesional");
+    	$this->db->join("facultad","facultad.IdFacultad=carrera_profesional.IdFacultad");
+    	$this->db->group_by("carrera_profesional.IdFacultad");    	
+    	$sqlFacultad= $this->db->get();
+		$dataFacultad = $sqlFacultad->result();
+
+		$listaOpcionesCarreraProfesional=array();
+		foreach ($dataFacultad as $value) 
+		{			
+			$facultadOption=null;
+			$this->db->select("*");
+    		$this->db->from("carrera_profesional");
+    		$this->db->where("carrera_profesional.IdFacultad",$value->IdFacultad);
+    		$sqlCarrera= $this->db->get();
+    		$dataCarrera= $sqlCarrera->result();
+    		$listaCarreraProfesional=array();
+    		foreach ($dataCarrera as $value1)
+    		{
+    			$listaCarreraProfesional[]=$value1;
+    		}
+    		$facultadOption->text=$value->NombreFacultad;
+    		$facultadOption->children=$listaCarreraProfesional;
+			$listaOpcionesCarreraProfesional[]=$facultadOption;
+		}	
+		return $listaOpcionesCarreraProfesional;
     }
 }
 ?>

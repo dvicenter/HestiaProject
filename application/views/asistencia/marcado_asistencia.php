@@ -43,4 +43,4 @@
 		</div>
 	</div>
 </div>
-        
+<script src="<?php echo base_url("public/js/asistencia/marcado_asistencia.js")?>"></script>

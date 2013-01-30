@@ -30,7 +30,9 @@
 				 <?php echo $nav;?>
 			</div>
 			<div id="mod_panel" class="seccion_right">
-				  <?php echo $content; ?>					
+                <div id="panel_trabajo" class="panel_trabajo">  
+                    <?php echo $content; ?>                 
+                </div>
 			</div>
 		</div>        
 		
