@@ -25,8 +25,7 @@ html{
 header{
 	background: white;
 	text-align: center;	
-	padding:15px;
-	margin-bottom:10px;
+	padding:5px;
 }
 header img{
 	display:inline-block;
@@ -217,12 +216,18 @@ border-left: 1px solid #F3EAD9;
 }
 .buttons{
 	text-align: right;
-	padding: 5px 0;
 }
 .buttons div{
 	display: inline-block;
 }
 .alert{
+	margin-bottom: 0;
+	min-height: 20px;
+}
+#mensaje p{
+	margin: 0;
+}
+.progress {
 	margin-bottom: 0;
 }
 

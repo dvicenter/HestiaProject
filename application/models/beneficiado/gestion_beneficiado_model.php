@@ -82,7 +82,7 @@ class Gestion_beneficiado_model extends CI_Model {
 									$CorreoElectronicoPersonal,
 								    $CorreoElectronicoInstitucional)
 	{
-		$this->db->trans_start();
+		$this->db->trans_begin();
 		$dataPersona = array(			   
 			     "IdTipoPersona"=>"1",
 			     "DNI"=>$DNI,
@@ -99,10 +99,10 @@ class Gestion_beneficiado_model extends CI_Model {
 			     "Celular1"=>$Celular1,
 			     "Celular2"=>$Celular2,
 			     "CorreoElectronicoPersonal"=>$CorreoElectronicoPersonal,
-			     "CorreoElectronicoInstitucional"=>$CorreoElectronicoInstitucional,
-			     "FechaCreacion"=>"NOW()",
-			     "FechaActualizacion"=>"NOW()"
+			     "CorreoElectronicoInstitucional"=>$CorreoElectronicoInstitucional
 			);
+		$this->db->set('FechaCreacion', 'NOW()', FALSE);
+		$this->db->set('FechaActualizacion', 'NOW()', FALSE);	
 		$this->db->insert('persona', $dataPersona); 
 		$IdPersona = $this->db->insert_id();
 
@@ -110,19 +110,22 @@ class Gestion_beneficiado_model extends CI_Model {
 				 "IdPersona"=>$IdPersona,   
 			     "IdCronogramaAcademico"=>$this->session->userdata('IdCronogramaAcademicoVigente'),
 			     "SiNoHabilitado"=>"1",
-			     "CondicionFinal"=>"Habilitado",
-			     "FechaCreacion"=>"NOW()",
-			     "FechaActualizacion"=>"NOW()"
+			     "CondicionFinal"=>"Habilitado"
 			);
-		$this->db->insert('beneficiado', $dataBeneficiado); 
+		$this->db->set('FechaCreacion', 'NOW()', FALSE);
+		$this->db->set('FechaActualizacion', 'NOW()', FALSE);		
+		$this->db->insert('beneficiado', $dataBeneficiado,false); 
 		$this->db->trans_complete();
 		$data=null;
 		if ($this->db->trans_status() === FALSE)
 		{
-		  	$data=array("tipoMensaje"=>"E","mensaje"=>"No se pudo registrar al beneficiado");
+		    $this->db->trans_rollback();
+		    $data=array("tipoMensaje"=>"E","mensaje"=>"No se pudo registrar al beneficiado");
 		}
-		else{
-			$data=array("tipoMensaje"=>"S","mensaje"=>"El registro del beneficiado ha sido exitoso");
+		else
+		{
+		    $this->db->trans_commit();
+		    $data=array("tipoMensaje"=>"S","mensaje"=>"El registro del beneficiado ha sido exitoso");
 		}
 		return $data;
 	}
@@ -132,12 +135,20 @@ class Gestion_beneficiado_model extends CI_Model {
 				 "IdPersona"=>$IdPersona,   
 			     "IdCronogramaAcademico"=>$this->session->userdata('IdCronogramaAcademicoVigente'),
 			     "SiNoHabilitado"=>"1",
-			     "CondicionFinal"=>"Habilitado",
-			     "FechaCreacion"=>"NOW()",
-			     "FechaActualizacion"=>"NOW()"
+			     "CondicionFinal"=>"Habilitado"
 			);
-		$this->db->insert('beneficiado', $dataBeneficiado); 
-
+		$this->db->set('FechaCreacion', 'NOW()', FALSE);
+		$this->db->set('FechaActualizacion', 'NOW()', FALSE);	
+		$data=null;
+		if ($this->db->insert('beneficiado', $dataBeneficiado,false) === FALSE)
+		{
+		    $data=array("tipoMensaje"=>"E","mensaje"=>"No se pudo registrar al beneficiado");
+		}
+		else
+		{
+		    $data=array("tipoMensaje"=>"S","mensaje"=>"El registro del beneficiado ha sido exitoso");
+		}
+		return $data;
 	}
 	function exportarBeneficiados($parametro,$tipo)
     {

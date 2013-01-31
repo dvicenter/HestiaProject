@@ -1,5 +1,4 @@
 $(document).on("ready", readyRegistroBeneficiado);
-
 function readyRegistroBeneficiado(){
 		    var listaCarreraProfesional;
           $("#dp3").datepicker({
@@ -84,11 +83,14 @@ function readyRegistroBeneficiado(){
 			$("#txt_busqueda_persona_input").trigger('click');
 	});	
   function guardarBeneficiado(){
-    console.log("test");
+    $("button[name='btn_confirmar']").attr("disabled","true");
+    $("button[name='btn_cancelar2']").attr("disabled","true");
+
     var data_values=jQuery.parseJSON($("#txt_busqueda_persona_hidden")[0].getAttribute("data-values"));
     var IdCarreraProfesional=$("#sl_carrera_profesional").select2("val");
     var idPersona=data_values["IdPersona"];
-      $.post(server+"index.php/beneficiado/gestion_beneficiado/registrarBeneficiado",{
+    $(".bar").animate({width:"20%"},500,function(){
+       $.post(server+"index.php/beneficiado/gestion_beneficiado/registrarBeneficiado",{
       "IdPersona":idPersona,
       "DNI":$("input[name='txt_dni']").val(),
       "CodigoUniversitario":$("input[name='txt_cod_univ']").val(),
@@ -106,19 +108,25 @@ function readyRegistroBeneficiado(){
       "CorreoElectronicoPersonal":$("input[name='txt_correo_personal']").val(),
       "CorreoElectronicoInstitucional":$("input[name='txt_correo_institucional']").val()
     },function(data){
+       $(".bar").animate({"width":"100%"},500,function(){
         if(data.tipoMensaje=="E"){
+          $("#mensaje").html("");
           $("#mensaje").removeClass();
           $("#mensaje").addClass("alert");
           $("#mensaje").addClass("alert-error");
           $("#mensaje").append("<p>"+data.mensaje+"</p>");
         }
         else{
+           $("#mensaje").html("");
           $("#mensaje").removeClass();
           $("#mensaje").addClass("alert");
           $("#mensaje").addClass("alert-success");
           $("#mensaje").append("<p>"+data.mensaje+"</p>");
         }
-    });
+        $('#myModal').modal('hide')
+       });        
+      });
+    });     
     return false;
   }
 	function actualizarRegistro(){
@@ -149,6 +157,8 @@ function readyRegistroBeneficiado(){
 	}
 
 	function deshabilitarForm(tag,value){
+    $("button[name='btn_confirmar']").attr("disabled",value);
+    $("button[name='btn_cancelar2']").attr("disabled",value);
 			$("input[name='txt_apellido_paterno']").attr("disabled",value);
 	    	$("input[name='txt_apellido_materno']").attr("disabled",value);
 	    	$("input[name='txt_nombres_completos']").attr("disabled",value);	  
