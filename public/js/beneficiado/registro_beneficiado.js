@@ -78,13 +78,20 @@ function readyRegistroBeneficiado(){
       $(".form form").on("submit",guardarBeneficiado);
 	 		$("button[name='btn_nuevo']").on("click",nuevoRegistro);
 	 		$("button[name='btn_actualizar']").on("click",actualizarRegistro);
-	 		$("button[name='btn_cancelar']").on("click",cancelarRegistro);
+	 		$("button[name='btn_cancelar1']").on("click",cancelarRegistro);
+      $("a[name='btn_guardar']").on("click",verificar);
 			$("#txt_busqueda_persona_input").focus();
 			$("#txt_busqueda_persona_input").trigger('click');
 	});	
+
+  function verificar(){
+     $("button[name='btn_confirmar']").attr("disabled",false);
+     $("button[name='btn_cancelar2']").attr("disabled",false);
+     $(".bar").css({width:"0%"});
+  }
   function guardarBeneficiado(){
-    $("button[name='btn_confirmar']").attr("disabled","true");
-    $("button[name='btn_cancelar2']").attr("disabled","true");
+    $("button[name='btn_confirmar']").attr("disabled",true);
+    $("button[name='btn_cancelar2']").attr("disabled",true);
 
     var data_values=jQuery.parseJSON($("#txt_busqueda_persona_hidden")[0].getAttribute("data-values"));
     var IdCarreraProfesional=$("#sl_carrera_profesional").select2("val");
@@ -114,14 +121,14 @@ function readyRegistroBeneficiado(){
           $("#mensaje").removeClass();
           $("#mensaje").addClass("alert");
           $("#mensaje").addClass("alert-error");
-          $("#mensaje").append("<p>"+data.mensaje+"</p>");
+          $("#mensaje").append("<p>"+data.mensaje+" "+$("input[name='txt_apellido_paterno']").val()+" "+$("input[name='txt_apellido_materno']").val()+" "+$("input[name='txt_nombres_completos']").val()+"</p>");
         }
         else{
            $("#mensaje").html("");
           $("#mensaje").removeClass();
           $("#mensaje").addClass("alert");
           $("#mensaje").addClass("alert-success");
-          $("#mensaje").append("<p>"+data.mensaje+"</p>");
+          $("#mensaje").append("<p>"+data.mensaje+" "+$("input[name='txt_apellido_paterno']").val()+" "+$("input[name='txt_apellido_materno']").val()+" "+$("input[name='txt_nombres_completos']").val()+" ha sido exitoso</p>");
         }
         $('#myModal').modal('hide')
        });        
@@ -157,6 +164,8 @@ function readyRegistroBeneficiado(){
 	}
 
 	function deshabilitarForm(tag,value){
+       $("button[name='btn_confirmar']").attr("disabled",value);
+    $("button[name='btn_cancelar2']").attr("disabled",value);
     $("button[name='btn_confirmar']").attr("disabled",value);
     $("button[name='btn_cancelar2']").attr("disabled",value);
 			$("input[name='txt_apellido_paterno']").attr("disabled",value);

@@ -120,12 +120,12 @@ class Gestion_beneficiado_model extends CI_Model {
 		if ($this->db->trans_status() === FALSE)
 		{
 		    $this->db->trans_rollback();
-		    $data=array("tipoMensaje"=>"E","mensaje"=>"No se pudo registrar al beneficiado");
+		    $data=array("tipoMensaje"=>"E","mensaje"=>"No se pudo registrar");
 		}
 		else
 		{
 		    $this->db->trans_commit();
-		    $data=array("tipoMensaje"=>"S","mensaje"=>"El registro del beneficiado ha sido exitoso");
+		    $data=array("tipoMensaje"=>"S","mensaje"=>"El registro del beneficiado");
 		}
 		return $data;
 	}

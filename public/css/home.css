@@ -105,6 +105,7 @@ nav{
 .item_menu_nav {
 	padding: 8px 14px;
 	margin-bottom:10px;
+	margin-left: 20px;
 }
 .item_menu_nav:hover {
 background-color: #C4C4C4;
