@@ -2,8 +2,7 @@ $(document).on("ready", readyHome);
 var oTable
 var server="http://localhost:81/HestiaProject/";
 function readyHome (ev)
-{
-	
+{	
 	$.ajaxSetup({
   	cache: false
 	});

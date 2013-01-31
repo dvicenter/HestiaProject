@@ -1,7 +1,7 @@
 $(document).on("ready", readyRegistroBeneficiado);
 
 function readyRegistroBeneficiado(){
-		  
+		    var listaCarreraProfesional;
           $("#dp3").datepicker({
           	language:"es",
           	todayHighlight:"true",
@@ -9,10 +9,12 @@ function readyRegistroBeneficiado(){
           }).on('changeDate', function(ev){
 			   
 			    });
+
+          
           $("input[name='txt_fec_nacimiento']").attr("disabled",true);
           $.getJSON(server+"index.php/persona/gestion_persona/listarCarreraProfesional",function(listCarreraProfesional){
+            listaCarreraProfesional=listCarreraProfesional;
           $("#sl_carrera_profesional").select2({
-
             id:"IdCarreraProfesional",
             data:{results:listCarreraProfesional,text:"NombreCarreraProfesional"},
             placeholder: "Seleccione una Carrera Profesional",
@@ -29,7 +31,6 @@ function readyRegistroBeneficiado(){
                  }
                  return item.NombreCarreraProfesional; 
             }
-
           });
           $("#sl_carrera_profesional").select2("disable");
           $('#txt_busqueda_persona').flexbox(server+"index.php/persona/gestion_persona/consultarPersonaFiltro",{
@@ -58,7 +59,14 @@ function readyRegistroBeneficiado(){
             $("input[name='txt_celular2']").val(data_values["Celular2"]);
             $("input[name='txt_correo_personal']").val(data_values["CorreoElectronicoPersonal"]);
             $("input[name='txt_correo_institucional']").val(data_values["CorreoElectronicoInstitucional"]);
-            $("input[name='txt_carrera_profesional']").val(data_values["CarreraProfesional"]);
+            jQuery.each(listaCarreraProfesional,function(i,val){   
+                jQuery.each(val.children,function(a,value){   
+                  if(value.IdCarreraProfesional==data_values["IdCarreraProfesional"]){
+                  $("#sl_carrera_profesional").select2("data", value);
+                   return false;
+                 }
+                });              
+            });           
             $("input[name='txt_ciclo']").val(data_values["NumCiclo"]);
             $("input[name='txt_cod_univ']").val(data_values["CodigoUniversitario"]);
             $("button[name='btn_actualizar']").attr("disabled",false);
@@ -68,19 +76,58 @@ function readyRegistroBeneficiado(){
                 pageSize: 5,
                 summaryTemplate: 'Mostrando {start}-{end} de {total} resultados'   
             }});			
+      $(".form form").on("submit",guardarBeneficiado);
 	 		$("button[name='btn_nuevo']").on("click",nuevoRegistro);
 	 		$("button[name='btn_actualizar']").on("click",actualizarRegistro);
 	 		$("button[name='btn_cancelar']").on("click",cancelarRegistro);
 			$("#txt_busqueda_persona_input").focus();
 			$("#txt_busqueda_persona_input").trigger('click');
 	});	
+  function guardarBeneficiado(){
+    console.log("test");
+    var data_values=jQuery.parseJSON($("#txt_busqueda_persona_hidden")[0].getAttribute("data-values"));
+    var IdCarreraProfesional=$("#sl_carrera_profesional").select2("val");
+    var idPersona=data_values["IdPersona"];
+      $.post(server+"index.php/beneficiado/gestion_beneficiado/registrarBeneficiado",{
+      "IdPersona":idPersona,
+      "DNI":$("input[name='txt_dni']").val(),
+      "CodigoUniversitario":$("input[name='txt_cod_univ']").val(),
+      "IdCarreraProfesional":IdCarreraProfesional,
+      "NumCiclo":$("input[name='txt_ciclo']").val(),
+      "ApellidoPaterno":$("input[name='txt_apellido_paterno']").val(),
+      "ApellidoMaterno":$("input[name='txt_apellido_materno']").val(),
+      "Nombres":$("input[name='txt_nombres_completos']").val(),
+      "Sexo":$("input[name='rbt_sexo']").val(),
+      "FechaNacimiento":$("input[name='txt_fec_nacimiento']").val(),
+      "CiudadProcedencia":$("input[name='txt_ciudad_procedencia']").val(),
+      "TelefonoFijo":$("input[name='txt_telefono_fijo']").val(),
+      "Celular1":$("input[name='txt_celular1']").val(),
+      "Celular2":$("input[name='txt_celular2']").val(),
+      "CorreoElectronicoPersonal":$("input[name='txt_correo_personal']").val(),
+      "CorreoElectronicoInstitucional":$("input[name='txt_correo_institucional']").val()
+    },function(data){
+        if(data.tipoMensaje=="E"){
+          $("#mensaje").removeClass();
+          $("#mensaje").addClass("alert");
+          $("#mensaje").addClass("alert-error");
+          $("#mensaje").append("<p>"+data.mensaje+"</p>");
+        }
+        else{
+          $("#mensaje").removeClass();
+          $("#mensaje").addClass("alert");
+          $("#mensaje").addClass("alert-success");
+          $("#mensaje").append("<p>"+data.mensaje+"</p>");
+        }
+    });
+    return false;
+  }
 	function actualizarRegistro(){
 		$("#txt_busqueda_persona_input").attr("disabled",true);
 		deshabilitarForm("enable",false);
 		$("button[name='btn_nuevo']").attr("disabled",true);
 		$("button[name='btn_actualizar']").attr("disabled",true);
 		$("input[name='txt_apellido_paterno']").focus();
-    showButtons(true);
+    
 	}	
 	function nuevoRegistro(){
 		deshabilitarForm("enable",false);
@@ -89,7 +136,7 @@ function readyRegistroBeneficiado(){
 		$("input[name='txt_apellido_paterno']").focus();
 		$("button[name='btn_actualizar']").attr("disabled",true);
 		$("#txt_busqueda_persona_input").attr("disabled",true);
-		showButtons(true);
+
 	}
 	function cancelarRegistro(){
 		limpiarForm();
@@ -97,26 +144,10 @@ function readyRegistroBeneficiado(){
 		$("button[name='btn_nuevo']").attr("disabled",false);
 		$("button[name='btn_actualizar']").attr("disabled",true);
 		$("#txt_busqueda_persona_input").attr("disabled",false);
-		showButtons(false);
+
 		$("#txt_busqueda_persona_input").focus();
 	}
-	function showButtons(value){
-		var heightButton=$(".buttons").height();
-		var heightForm=$(".form").height();
-		var top=0;
-		var offset = $("#header").height;
-		 var target = $("#mod_panel").offset().top;
-        $('html, body').animate({scrollTop:target}, 1000);
-        var newHeight=0;
-        if(value){
-        newHeight=heightButton+heightForm;	
-        }
-        else{
-        	newHeight=heightForm-heightButton;	
-        }
-        
-		$(".form").animate({height:newHeight},1000);
-	}
+
 	function deshabilitarForm(tag,value){
 			$("input[name='txt_apellido_paterno']").attr("disabled",value);
 	    	$("input[name='txt_apellido_materno']").attr("disabled",value);
@@ -147,6 +178,7 @@ function readyRegistroBeneficiado(){
         $("input[name='txt_carr_prof']").attr("value","");
         $("input[name='txt_ciclo']").attr("value","");
         $("input[name='txt_fec_nacimiento']").attr("value","");
+        $("#sl_carrera_profesional").select2("data", "");
         $("input[name='txt_ciudad_procedencia']").attr("value","");
         $("input[name='txt_telefono_fijo']").attr("value","");
         $("input[name='txt_celular1']").attr("value","");

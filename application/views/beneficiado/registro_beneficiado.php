@@ -13,9 +13,9 @@
 			<label id="lbl_tipo_consulta_ap" class="radio inline"><input type="radio" name="rbt_tipo_consulta" value="2" checked="true">Apellidos y Nombres</label>
 	  		<div class="inline"id="txt_busqueda_persona"></div>
 	  		<button name="btn_nuevo" class="btn btn-small"><i class="icon-plus"></i>Nuevo Alumno</button>
-	  		<button name="btn_actualizar" class="btn btn-small" disabled><i class="icon-edit"></i>Actualizar datos</button>	
-	
+	  		<button name="btn_actualizar" class="btn btn-small" disabled><i class="icon-edit"></i>Actualizar datos</button>		
 		</div>
+		<form action="">
 		<div class="row-fluid fila_datos">
 			<div class="span8 inline">
 				<div class="row-fluid">
@@ -102,13 +102,18 @@
 				<label class="etiqueta">Ciclo</label>
 				<input  class="span12" disabled="disabled" name="txt_ciclo" type="number" max="12" min="1" value="1" >						
 			</div>
+		</div>		
+		<div class="buttons">
+				<div id="mensaje" class="alert pull-left">
+				 
+				</div>
+				<div>
+					<button type="submit" name="btn_guardar" class="btn btn-success">Guardar</button>
+					<button name="btn_cancelar"class="btn btn-danger">Cancelar</button>
+				</div>
 		</div>
-		
+		</form>		
 	</fieldset>
-	<div class="buttons">
-	<button type="submit" class="btn btn-success">Guardar</button>
-	<button name="btn_cancelar"class="btn btn-danger">Cancelar</button>    	
-	</div>
 </div>
 		
  <script src="<?php echo base_url("public/js/vendor/bootstrap/js/bootbox.min.js")?>"></script>

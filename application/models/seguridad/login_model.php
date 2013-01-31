@@ -19,6 +19,14 @@ class Login_model extends CI_Model {
 				$this->session->set_userdata('NombreUsuario',$data[0]->NombreUsuario);
 				$this->session->set_userdata('IdPersona',$data[0]->IdPersona);
 				$this->session->set_userdata('IdCentroAtencion',$data[0]->IdCentroAtencion);
+				
+				$this->db->select('Valor,Id');
+				$this->db->where('NombreParametro',"CronogramaAcademicoVigente");
+				$sql = $this->db->get('Parametro');
+				$dataParametro = $sql->result();
+				$this->session->set_userdata('CronogramaAcademicoVigente',$dataParametro[0]->Valor);
+				$this->session->set_userdata('IdCronogramaAcademicoVigente',$dataParametro[0]->Id);
+				
 				// Consulta de datos de persona
 			  	$this->db->select('ApellidoPaterno,ApellidoMaterno,Nombres');
 				$this->db->where('IdPersona',$data[0]->IdPersona);

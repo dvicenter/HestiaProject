@@ -208,23 +208,22 @@ border-left: 1px solid #F3EAD9;
 	
 }
 .form{
-	position: relative;
-	z-index: 0;
 }
 .form legend p{
 	margin: 0;
 }
 
 .form fieldset{
-	position: relative;
-	z-index: 2;
-	background-color: whitesmoke;
 }
 .buttons{
-	z-index: 1;
-	position: absolute;
-	right: 0;
-	bottom: 0;
+	text-align: right;
+	padding: 5px 0;
+}
+.buttons div{
+	display: inline-block;
+}
+.alert{
+	margin-bottom: 0;
 }
 
 /* ================

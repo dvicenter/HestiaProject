@@ -25,6 +25,49 @@
 			$this->load->view('plantilla/plantilla', $template);
 			 
 	}
+	public function registrarBeneficiado()
+	{		
+		$IdPersona=$this->input->post('IdPersona',TRUE)."";
+		$DNI=$this->input->post('DNI',TRUE)."";
+		$CodigoUniversitario=$this->input->post('CodigoUniversitario',TRUE)."";
+		$IdCarreraProfesional=$this->input->post('IdCarreraProfesional',TRUE)."";
+		$NumCiclo=$this->input->post('NumCiclo',TRUE)."";
+		$ApellidoPaterno=$this->input->post('ApellidoPaterno',TRUE)."";
+		$ApellidoMaterno=$this->input->post('ApellidoMaterno',TRUE)."";
+		$Nombres=$this->input->post('Nombres',TRUE)."";
+		$Sexo=$this->input->post('Sexo',TRUE)."";
+		$FechaNacimiento=$this->input->post('FechaNacimiento',TRUE)."";
+		$CiudadProcedencia=$this->input->post('CiudadProcedencia',TRUE)."";
+		$TelefonoFijo=$this->input->post('TelefonoFijo',TRUE)."";
+		$Celular1=$this->input->post('Celular1',TRUE)."";
+		$Celular2=$this->input->post('Celular2',TRUE)."";
+		$CorreoElectronicoPersonal=$this->input->post('CorreoElectronicoPersonal',TRUE)."";
+	    $CorreoElectronicoInstitucional=$this->input->post('CorreoElectronicoInstitucional',TRUE)."";
+	    $this->load->model("beneficiado/gestion_beneficiado_model");
+	    if($IdPersona=="false"){
+	    $data=$this->gestion_beneficiado_model->registrarBeneficiado($IdPersona);	
+	    }
+	    else{
+	    $data=$this->gestion_beneficiado_model->registrarBeneficiado($IdPersona,
+									$DNI,
+									$CodigoUniversitario,
+									$IdCarreraProfesional,
+									$NumCiclo,
+									$ApellidoPaterno,
+									$ApellidoMaterno,
+									$Nombres,
+									$Sexo,
+									$FechaNacimiento,
+									$CiudadProcedencia,
+									$TelefonoFijo,
+									$Celular1,
+									$Celular2,
+									$CorreoElectronicoPersonal,
+								    $CorreoElectronicoInstitucional
+	    	);
+	    }
+	    $this->output->set_content_type('json')->set_output(json_encode($data));	
+	}
 	public function consultarBeneficiado()
 	{
 			$parametro=$this->input->get('txt_consulta_beneficiado',TRUE)."";
