@@ -15,10 +15,8 @@
 	  		<button name="btn_actualizar" class="btn btn-small" disabled><i class="icon-edit"></i>Actualizar datos</button>		
 		</div>
 		<form action="">
-		<div class="row-fluid fila_datos">
-			<div id="mensaje" class="alert">
-				
-			</div>
+		<div class="row-fluid fila_datos" id="mensaje_div">
+
 		</div>
 		<div class="row-fluid fila_datos">
 			<div class="span8 inline">

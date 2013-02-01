@@ -1,6 +1,8 @@
 $(document).on("ready", readyRegistroBeneficiado);
+  var siNo=false;
 function readyRegistroBeneficiado(){
 		    var listaCarreraProfesional;
+      
           $("#dp3").datepicker({
           	language:"es",
           	todayHighlight:"true",
@@ -8,8 +10,6 @@ function readyRegistroBeneficiado(){
           }).on('changeDate', function(ev){
 			   
 			    });
-
-          
           $("input[name='txt_fec_nacimiento']").attr("disabled",true);
           $.getJSON(server+"index.php/persona/gestion_persona/listarCarreraProfesional",function(listCarreraProfesional){
             listaCarreraProfesional=listCarreraProfesional;
@@ -89,7 +89,14 @@ function readyRegistroBeneficiado(){
      $("button[name='btn_cancelar2']").attr("disabled",false);
      $(".bar").css({width:"0%"});
   }
-  function guardarBeneficiado(){
+  function guardarBeneficiado(){ 
+    console.log(siNo);
+    if(!siNo){
+    $("#mensaje_div").append('<div id="mensaje" class="alert"></div>');
+    $("#mensaje").append('<a class="close" data-dismiss="alert" href="#">&times;</a>');  
+    }
+    siNo=true;    
+
     $("button[name='btn_confirmar']").attr("disabled",true);
     $("button[name='btn_cancelar2']").attr("disabled",true);
 
@@ -115,8 +122,11 @@ function readyRegistroBeneficiado(){
       "CorreoElectronicoPersonal":$("input[name='txt_correo_personal']").val(),
       "CorreoElectronicoInstitucional":$("input[name='txt_correo_institucional']").val()
     },function(data){
-       $(".bar").animate({"width":"100%"},500,function(){
+       $(".bar").animate({"width":"100%"},500,function(){        
+         
+        
         if(data.tipoMensaje=="E"){
+
           $("#mensaje").html("");
           $("#mensaje").removeClass();
           $("#mensaje").addClass("alert");
