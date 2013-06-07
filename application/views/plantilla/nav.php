@@ -1,4 +1,4 @@
-				<div class="datos_usuarios">
+					<div class="datos_usuarios">
 					<div>
 						<div class="imagen_dato_usuario">
 							<img src="<?php echo base_url("public/img/demo.jpg")?>"/>
